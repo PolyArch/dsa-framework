@@ -1,0 +1,9 @@
+Input: R1
+
+O0=Add16x4(R1)
+O1=Add16x4(O0)
+
+Output: O0
+Output: O1
+
+

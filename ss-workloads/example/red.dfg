@@ -1,0 +1,21 @@
+#O = sum(A)
+
+Input: A [8] 
+Input: reset
+
+M0 =Add16x4(A0 , A1 )
+M1 =Add16x4(A2 , A3 )
+M2 =Add16x4(A4 , A5 )
+M3 =Add16x4(A6 , A7 )
+
+T0 =Add16x4(M0 , M1 )
+T1 =Add16x4(M2 , M3 )
+
+T2 =Add16x4(T0 , T1 )
+
+R = Red16x4(T2, 0)
+
+O = Acc16x4(R,reset)
+
+Output: O
+

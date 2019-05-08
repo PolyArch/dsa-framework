@@ -1,0 +1,18 @@
+InputVec: I [0, 1, 2, 3]      # Original Image  
+InputVec: F [0, 1]      # Filter
+InputVec: C [0, 1, 2, 3]      # Carry
+
+
+M0 = Mul64(I0, F0)
+M1 = Mul64(I1, F0)
+M2 = Mul64(I2, F1)
+M3 = Mul64(I3, F1)
+
+O0 = Add64(M0, C0)
+O1 = Add64(M1, C1)
+O2 = Add64(M2, C2)
+O3 = Add64(M3, C3)
+
+OutputVec: O [0, 1, 2, 3]
+
+

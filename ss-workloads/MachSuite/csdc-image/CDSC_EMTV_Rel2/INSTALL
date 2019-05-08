@@ -1,0 +1,26 @@
+Linux Compiling
+use the following instructions to build
+./configure
+
+if configure command returns an error, it is likely permissions related. to fix, run the following commands:
+sudo chmod +x configure
+
+once configure is successfully run, then execute
+make
+
+output of make will be located in the bin directory
+to execute emtv, go to bin directory and run
+./emtv3d
+
+---------------------------------------------------------------------------------------------------------
+Windows MS Visual Studio
+win32/EMTV3D.sln
+
+
+For GPU compiling 
+./configure --platform=GPU
+make
+make exe
+cd bin
+./emtv3d
+

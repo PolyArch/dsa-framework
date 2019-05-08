@@ -1,0 +1,7 @@
+Input: in1
+Input: in2
+Input: p1
+
+out=Add64(in1,in2, control=p1{0:b1,1:b2});
+
+Output: out

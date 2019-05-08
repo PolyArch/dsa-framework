@@ -1,0 +1,155 @@
+Input: C
+Input: S
+Input: A
+Input: B
+
+CAR = FMul32x2(C, A)
+CAI = FMulX32x2(C, A)
+CA  = FSubAdd32x2(CAR, CAI)
+
+SBR = FMul32x2(S, B)
+SBI = FMulX32x2(S, B)
+SB  = FSubAdd32x2(SBR, SBI)
+
+O0 = FAdd32x2(CA, SB)
+
+SAR = FMul32x2(A, S)
+SAI = FMulX32x2(A, S)
+SA  = FAddSub32x2(SAR, SAI)
+
+CBR = FMul32x2(C, B)
+CBI = FMulX32x2(C, B)
+CB  = FAddSub32x2(CBR, CBI)
+
+O1 = FSub32x2(SA, CB)
+
+Output: O0
+Output: O1
+
+----
+#pragma group temporal
+
+Input: D #d[i+1]
+Input: F #f[i+1]
+Input: mat0
+Input: mat1
+Input: mat2
+Input: mat3
+
+# mat[0] = (f[i-1] || something - mu)
+# mat[1] = b
+# mat[2] = d[i]
+# mat[3] = f[i]
+
+mm0 = FMul32x2(mat0, mat0)
+mm1 = FMul32x2(mat1, mat1)
+mms_= FAdd32x2(mm0, mm1)
+mms = FRed32x2(mms_)
+F_ = RealSqrt(mms)
+#F_ = CplxGivensRes(mat0, mat1)
+
+cc = CplxConj(mat0)
+c = CplxDivCons(cc, F_)
+#c = CplxGivensCos(mat0, mat1)
+
+ss = CplxConj(mat1)
+s = CplxDivCons(ss, F_)
+#s = CplxGivensSin(mat0, mat1)
+
+rmat2c = FMul32x2(mat2, c)
+imat2c = FMulX32x2(mat2, c)
+mat2c = FSubAdd32x2(rmat2c, imat2c)
+#mat2c = CplxMulCplx(mat2, c)
+
+rmat3s = FMul32x2(mat3, s)
+imat3s = FMulX32x2(mat3, s)
+mat3s = FSubAdd32x2(rmat3s, imat3s)
+#mat3s = CplxMulCplx(mat3, s)
+
+a = FAdd32x2(mat2c, mat3s)
+
+rmat2cs = FMul32x2(s, mat2)
+imat2cs = FMulX32x2(s, mat2)
+mat2cs  = FAddSub32x2(rmat2cs, imat2cs)
+#mat2cs = CplxMulConj(mat2, s)
+
+rmat3cc = FMul32x2(c, mat3)
+imat3cc = FMulX32x2(c, mat3)
+mat3cc  = FAddSub32x2(rmat3cc, imat3cc)
+#mat3cc = CplxMulConj(mat3, c)
+
+fi = FSub32x2(mat2cs, mat3cc)
+
+rds = FMul32x2(D, s)
+ids = FMulX32x2(D, s)
+b = FSubAdd32x2(rds, ids)
+# b = CplxMulCplx(D, s);
+
+rdcc = FMul32x2(c, D)
+idcc = FMulX32x2(c, D)
+dcc  = FAddSub32x2(rdcc, idcc)
+di1 = CplxMulCons(dcc, 3212836864)
+#di1 = NegCplxMulConj(D, c);
+
+rot0 = c
+rot1 = s
+
+
+aa = FMul32x2(a, a)
+bb = FMul32x2(b, b)
+abs_ = FAdd32x2(aa, bb)
+abs = FRed32x2(abs_)
+D_ = RealSqrt(abs)
+#D_ = CplxGivensRes(a, b)
+
+ca = CplxConj(a)
+cc = CplxDivCons(ca, D_)
+#cc = CplxGivensCos(a, b)
+
+cb = CplxConj(b)
+ss = CplxDivCons(cb, D_)
+#ss = CplxGivensSin(a, b)
+
+rccfi = FMul32x2(cc, fi)
+iccfi = FMulX32x2(cc, fi)
+ccfi  = FSubAdd32x2(rccfi, iccfi)
+#ccfi = CplxMulCplx(cc, fi)
+
+rssdi1= FMul32x2(ss, di1)
+issdi1= FMulX32x2(ss, di1)
+ssdi1 = FSubAdd32x2(rssdi1, issdi1)
+#ssdi1 = CplxMulCplx(ss, di1)
+
+mat_0 = FAdd32x2(ccfi, ssdi1)
+
+rficss = FMul32x2(ss, fi)
+ificss = FMulX32x2(ss, fi)
+ficss  = FAddSub32x2(rficss, ificss)
+#ficss = CplxMulConj(fi, ss)
+
+rdi1ccc = FMul32x2(cc, di1)
+idi1ccc = FMulX32x2(cc, di1)
+di1ccc  = FAddSub32x2(rdi1ccc, idi1ccc)
+#di1ccc = CplxMulConj(di1, cc)
+
+mat_2 = FSub32x2(ficss, di1ccc)
+
+rssf = FMul32x2(ss, F)
+issf = FMulX32x2(ss, F)
+mat_1 = FSubAdd32x2(rssf, issf);
+#mat_1 = CplxMulCplx(ss, F);
+
+rfccc = FMul32x2(cc, F)
+ifccc = FMulX32x2(cc, F)
+fccc  = FAddSub32x2(rfccc, ifccc)
+mat_3 = CplxMulCons(fccc, 3212836864)
+#mat_3 = NegCplxMulConj(F, cc);
+
+Output: rot0
+Output: rot1
+Output: mat_0
+Output: mat_1
+Output: mat_2
+Output: mat_3
+Output: D_
+Output: F_

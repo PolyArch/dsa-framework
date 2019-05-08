@@ -1,0 +1,36 @@
+# format of a line in this file:
+# <instruction name> <args> <opcode>
+#
+# <opcode> is given by specifying one or more range/value pairs:
+# hi..lo=value or bit=value or arg=value (e.g. 6..2=0x45 10=1 rd=0)
+#
+# <args> is one of rd, rs1, rs2, rs3, imm20, imm12, imm12lo, imm12hi,
+# shamtw, shamt, rm
+
+#                                                  funct3             i[6:5] i[4:2] i[1:0]
+ss_cfg          rs1 imm12                          14..12=0  11..7=0  6..5=0 4..2=2 1..0=3 # I-type
+ss_cfg_port     rs1 rs2 bimm12hi bimm12lo          14..12=1           6..5=0 4..2=2 1..0=3 # S-type
+ss_ctx          rs1 rs2 bimm12hi bimm12lo          14..12=2           6..5=0 4..2=2 1..0=3 # S-type
+ss_fill_mode    rs1 rs2 bimm12hi bimm12lo          14..12=3           6..5=0 4..2=2 1..0=3 # S-type
+ss_stride       rs1 rs2 bimm12hi bimm12lo          14..12=0           6..5=3 4..2=6 1..0=3 # S-type
+ss_add_port     rs1 rs2 bimm12hi bimm12lo          14..12=0           6..5=1 4..2=2 1..0=3 # S-type
+ss_scr_rd       rs1 rs2 bimm12hi bimm12lo          14..12=1           6..5=1 4..2=2 1..0=3 # S-type
+ss_dma_rd       rs1 rs2 bimm12hi bimm12lo          14..12=2           6..5=1 4..2=2 1..0=3 # S-type
+ss_set_iter     rs1                       31..20=0 14..12=2  11..7=0  6..5=3 4..2=6 1..0=3 # I-type
+ss_const        rs1 rs2 bimm12hi bimm12lo          14..12=4           6..5=1 4..2=2 1..0=3 # S-type
+ss_recv         rs1 imm12                          14..12=5  rd       6..5=1 4..2=2 1..0=3 # I-type
+ss_garb         rs1 rs2 bimm12hi bimm12lo          14..12=3           6..5=2 4..2=6 1..0=3 # S-type
+ss_wr_scr       rs1 rs2 bimm12hi bimm12lo          14..12=1           6..5=2 4..2=6 1..0=3 # S-type
+ss_wr_dma       rs1 rs2 bimm12hi bimm12lo          14..12=4           6..5=2 4..2=6 1..0=3 # S-type
+ss_wr_rd        rs1 rs2 bimm12hi bimm12lo          14..12=5           6..5=2 4..2=6 1..0=3 # S-type
+ss_rem_port     rs1 rs2 bimm12hi bimm12lo          14..12=2           6..5=2 4..2=6 1..0=3 # S-type
+ss_ind          rs1 rs2 bimm12hi bimm12lo          14..12=5           6..5=3 4..2=6 1..0=3 # S-type
+ss_ind_wr       rs1 rs2 bimm12hi bimm12lo          14..12=6           6..5=3 4..2=6 1..0=3 # S-type
+ss_atom_op      rs1 rs2 bimm12hi bimm12lo          14..12=6           6..5=1 4..2=2 1..0=3 # S-type
+ss_const_scr    rs1 rs2 bimm12hi bimm12lo          14..12=6           6..5=2 4..2=6 1..0=3 # S-type
+ss_cfg_ind      rs1 rs2 bimm12hi bimm12lo          14..12=7           6..5=3 4..2=6 1..0=3 # S-type
+ss_cfg_atom_op  rs1 rs2 bimm12hi bimm12lo          14..12=7           6..5=2 4..2=6 1..0=3 # S-type
+ss_wait_df      rs1 imm12                          14..12=3  11..7=0  6..5=3 4..2=6 1..0=3 # I-type
+ss_wait         rs1 rs2 bimm12hi bimm12lo          14..12=4           6..5=3 4..2=6 1..0=3 # S-type
+
+#ss_wr_dma_addr  rs1 rs2                   31..25=0 14..12=2  11..7=0  6..5=2 4..0=0x1F

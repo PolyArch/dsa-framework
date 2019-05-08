@@ -1,0 +1,12 @@
+Input: A[8]
+
+O0 = A0
+O1 = A1
+O2 = A2
+O3 = A3
+O4 = A4
+O5 = A5
+O6 = A6
+O7 = A7
+
+Output: O[8]

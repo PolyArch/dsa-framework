@@ -1,0 +1,12 @@
+Input: ind_in
+
+ind_out=ind_in
+
+Output: ind_out
+---
+
+Input: in
+out=in
+
+Output: out
+

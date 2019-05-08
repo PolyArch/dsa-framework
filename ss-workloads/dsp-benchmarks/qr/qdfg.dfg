@@ -1,0 +1,49 @@
+Input: M [2]
+Input: V [2]
+Input: Coef
+Input: reset
+
+BAR0   = FMul32x2(M0, V0)
+BAR1   = FMul32x2(M1, V1)
+
+BAI0   = FMulX32x2(M0, V0)
+BAI1   = FMulX32x2(M1, V1)
+
+BA0    = FAddSub32x2(BAR0, BAI0)
+BA1    = FAddSub32x2(BAR1, BAI1)
+
+BA = FAdd32x2(BA0, BA1)
+
+ACC   = FAcc32x2(BA, reset)
+O    = CplxMulCons(ACC, Coef)
+
+Output: O
+
+----
+
+Input: A
+Input: B [2]
+Input: C [2]
+
+ABR0 = FMul32x2(A, B0)
+ABR1 = FMul32x2(A, B1)
+
+ABI0 = FMulX32x2(A, B0)
+ABI1 = FMulX32x2(A, B1)
+
+AB0  = FSubAdd32x2(ABR0, ABI0)
+AB1  = FSubAdd32x2(ABR1, ABI1)
+
+Q0    = FSub32x2(C0, AB0)
+Q1    = FSub32x2(C1, AB1)
+
+Output: Q [2]
+
+----
+
+Input: D
+Input: E
+
+FIN = CplxMulCons(D, E)
+
+Output: FIN

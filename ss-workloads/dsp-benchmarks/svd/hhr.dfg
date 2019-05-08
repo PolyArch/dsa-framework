@@ -1,0 +1,66 @@
+Input: NORM
+Input: HEAD
+Input: Inst
+
+RES = HouseHolder(NORM, HEAD, Inst)
+
+Output: RES
+
+----
+
+Input: A
+Input: B
+Input: Coef
+Input: reset
+
+BAR   = FMul32x2(B, A)
+BAI   = FMulX32x2(B, A)
+BA    = FAddSub32x2(BAR, BAI)
+ACC   = FAcc32x2(BA, reset)
+O     = CplxMulCons(ACC, Coef)
+
+Output: O
+
+----
+
+Input: A_
+Input: B_
+Input: Coef_
+Input: ACC_
+
+BAR_  = FMul32x2(B_, A_)
+BAI_  = FMulX32x2(B_, A_)
+BA_   = FAddSub32x2(BAR_, BAI_)
+DELTA = CplxMulCons(BA_, Coef_)
+O_    = FAdd32x2(ACC_, DELTA)
+
+Output: O_
+
+----
+
+Input: RA
+Input: RB
+Input: RC
+Input: RSignal
+
+RABR = FMul32x2(RA, RB)
+RABI = FMulX32x2(RA, RB)
+RAB  = FSubAdd32x2(RABR, RABI)
+R   = FSub32x2(RC, RAB)
+
+R_MEM  = Keep(R, RSignal)
+R_SPAD = Discard(R, RSignal)
+
+Output: R_MEM
+Output: R_SPAD
+
+----
+
+Input: IN
+
+OUTlocal  = IN
+OUTremote = IN
+
+Output: OUTlocal
+Output: OUTremote
+

@@ -1,0 +1,39 @@
+Input: QM
+Input: QW
+Input: QTAU
+Input: Qreset
+
+
+MWR  = FMul32x2(QM, QW)
+MWI  = FMulX32x2(QM, QW)
+QMW  = FSubAdd32x2(MWR, MWI)
+QACC = FAcc32x2(QMW, Qreset)
+QV   = CplxMulCons(QACC, QTAU)
+
+Output: QV
+
+----
+
+Input: QA
+Input: QB
+Input: QC
+Input: QSignal
+
+BAR  = FMul32x2(QB, QA)
+BAI  = FMulX32x2(QB, QA)
+QAB  = FAddSub32x2(BAR, BAI)
+Q = FSub32x2(QC, QAB)
+
+Q_MEM  = Keep(Q, QSignal)
+Q_SPAD = Discard(Q, QSignal)
+
+Output: Q_MEM
+Output: Q_SPAD
+
+----
+
+Input: IN
+
+OUT = IN
+
+Output: OUT

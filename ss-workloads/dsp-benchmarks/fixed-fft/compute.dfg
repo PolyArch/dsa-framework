@@ -1,0 +1,32 @@
+Input: L [4]
+Input: R [4]
+Input: W
+
+TMP_REAL0 = FxMul16x4(R0, W)
+TMP_REAL1 = FxMul16x4(R1, W)
+TMP_REAL2 = FxMul16x4(R2, W)
+TMP_REAL3 = FxMul16x4(R3, W)
+
+TMP_IMAG0 = FxMulX16x4(R0, W)
+TMP_IMAG1 = FxMulX16x4(R1, W)
+TMP_IMAG2 = FxMulX16x4(R2, W)
+TMP_IMAG3 = FxMulX16x4(R3, W)
+
+TMP0 = FxSubAdd16x4(TMP_REAL0, TMP_IMAG0)
+TMP1 = FxSubAdd16x4(TMP_REAL1, TMP_IMAG1)
+TMP2 = FxSubAdd16x4(TMP_REAL2, TMP_IMAG2)
+TMP3 = FxSubAdd16x4(TMP_REAL3, TMP_IMAG3)
+
+A0 = FxAdd16x4(L0, TMP0)
+A1 = FxAdd16x4(L1, TMP1)
+A2 = FxAdd16x4(L2, TMP2)
+A3 = FxAdd16x4(L3, TMP3)
+
+B0 = FxSub16x4(L0, TMP0)
+B1 = FxSub16x4(L1, TMP1)
+B2 = FxSub16x4(L2, TMP2)
+B3 = FxSub16x4(L3, TMP3)
+
+Output: A [4]
+Output: B [4]
+

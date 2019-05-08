@@ -1,0 +1,3 @@
+Modifications here are to the assembler to support new instructions.  Opcode MASK/MATCH'ers
+are generated from riscv-parseopcodes script.
+
