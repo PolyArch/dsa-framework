@@ -37,7 +37,7 @@ clean-ss: clean-$(SS_SCHED)
 
 riscv-gnu-toolchain: riscv-opcodes
 	mkdir -p $@/build
-	cd $@ && autoreconf -fiv && cd build && ../configure --prefix=$(SS_TOOLS)/ --enable-multilib
+	cd $@ && autoreconf -fiv && cd build && ../configure --prefix=$(SS_TOOLS)/
 	$(MAKE) -C $@/build -j9
 
 riscv-opcodes:

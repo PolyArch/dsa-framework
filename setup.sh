@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export SS=$(dirname "$0")
+export SS=`realpath $(dirname "$0")`
 export SS_STACK=$SS
 export SS_TOOLS=$SS_STACK/ss-tools
 export RISCV=$SS_TOOLS
