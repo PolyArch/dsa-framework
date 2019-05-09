@@ -1,9 +1,0 @@
-#Stencil 2D SB version
-
-3 files are importnat to consider
-
-1. stencil_sb.c --> The kernel file itself which you will be using to write the SB program
-
-2. stencil_sb.dfg --> The dafalo graph version of the computation
-
-3. softbrain.hpp --> A common header file you want to add all the hardware related parameters
