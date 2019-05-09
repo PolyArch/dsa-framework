@@ -1,0 +1,21 @@
+Input: llike [4]
+Input: trans [4]
+Input: reset
+Input: emission
+
+S0 = Add64(llike0,trans0)
+S1 = Add64(llike1,trans1)
+S2 = Add64(llike2,trans2)
+S3 = Add64(llike3,trans3)
+
+#these should be mins
+M01 = Add64(S0,S1)
+M12 = Add64(S2,S3)
+
+M  = Add64(M01,M12)
+ME = Add64(M,emission)
+
+MR = Acc64(ME,reset)
+
+Output: MR
+

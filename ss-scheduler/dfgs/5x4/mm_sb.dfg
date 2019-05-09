@@ -1,0 +1,23 @@
+Input: A
+Input: B [8]
+Input: reset
+
+M0 = Mul64(B0, A)
+M1 = Mul64(B1, A)
+M2 = Mul64(B2, A)
+M3 = Mul64(B3, A)
+M4 = Mul64(B4, A)
+M5 = Mul64(B5, A)
+M6 = Mul64(B6, A)
+M7 = Mul64(B7, A)
+
+R0 = Acc64(M0, reset)
+R1 = Acc64(M1, reset)
+R2 = Acc64(M2, reset)
+R3 = Acc64(M3, reset)
+R4 = Acc64(M4, reset)
+R5 = Acc64(M5, reset)
+R6 = Acc64(M6, reset)
+R7 = Acc64(M7, reset)
+
+Output: R [8]

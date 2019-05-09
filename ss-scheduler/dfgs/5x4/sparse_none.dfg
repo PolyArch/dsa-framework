@@ -1,0 +1,35 @@
+Input: feat_val
+Input: feat_ind
+Input: node_ind
+Input: label [2]
+Input: local_offset
+
+ctrl0 = IndexMatch16(feat_ind:16:0, node_ind:16:3)
+ctrl1 = IndexMatch16(feat_ind:16:1, node_ind:16:3)
+ctrl2 = IndexMatch16(feat_ind:16:2, node_ind:16:3)
+ctrl3 = IndexMatch16(feat_ind:16:3, node_ind:16:3)
+
+done = Or(Or(ctrl0,ctrl1),Or(ctrl2,ctrl3))
+all_done = Keep(1,Not(done))
+
+O0 = Keep16(feat_val:16:0, ctrl0, control=ctrl0{2:b1})
+O1 = Keep16(feat_val:16:1, ctrl1, control=ctrl1{2:b1})
+O2 = Keep16(feat_val:16:2, ctrl2, control=ctrl2{2:b1})
+O3 = Keep16(feat_val:16:3, ctrl3, control=ctrl3{2:b1})
+
+out0 = O0 O1 O2 O3
+C0 = out0
+C1 = Add16x4(out0,local_offset)
+
+D0 = label0
+D1 = label0
+D2 = label0
+D3 = label0
+D4 = label1 
+D5 = label1 
+D6 = label1 
+D7 = label1 
+
+Output: C[2]
+Output: D[8]
+Output: all_done

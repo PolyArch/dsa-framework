@@ -1,0 +1,24 @@
+Input: M
+Input: MIP
+Input: MIM
+Input: MJP
+Input: MJM
+Input: MKP
+Input: MKM
+Input: C0
+Input: C1
+
+AI = Add64(MIP, MIM)
+AJ = Add64(MJP, MJM)
+AK = Add64(MKP, MKM)
+
+AIJ = Add64(AI, AJ)
+AIJK = Add64(AIJ, AK)
+
+P0 = Mul64(AIJK,C1)
+P1 = Mul64(M,C0)
+
+R = Add64(P0, P1)
+
+Output: R
+

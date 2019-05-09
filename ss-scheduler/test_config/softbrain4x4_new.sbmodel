@@ -1,0 +1,59 @@
+[fu-model]
+# fu_types and capabilities
+# Number after colon specifies encoding
+FU_TYPE FU_ILOG:   And:1,  Or:2,   Xor:2
+FU_TYPE FU_SHFT:   Shl:1,  LShr:2, AShr:2
+FU_TYPE FU_IADD:   Add:1,  Sub:2,  IMax:3, IMin:4, SMax:5, SMin:6, ICmp-EQ:7, ICmp-NE:8, ICmp-UGT:9, ICmp-UGE:10, ICmp-ULT:11, ICmp-ULE:12, ICmp-SGT:13, ICmp-SGE:14, ICmp-SLT:15, ICmp-SLE:16 
+FU_TYPE FU_IMUL:   Mul:1
+FU_TYPE FU_IDIV:   UDiv:1, SDiv:2, URem:3, SRem:4
+FU_TYPE FU_ALL_:   ALL
+
+#specify what the switch can do
+#SWITCH_TYPE:   PHI_STRICT, PHI_FWD, PHI_COMB
+
+[sub-model]
+# DySER 8x8 Model File
+
+# basic params
+topology: grid
+width: 3
+height: 4
+
+bw: 1
+bw_extra: 0.00
+
+#io_layout: standard
+#io_layout: open_splyser
+io_layout: three_sides_in
+
+outs_per_switch: 3
+ins_per_switch: 3
+
+# Fully Specified Layout
+# note that the following lines must proceed the SB_LAYOUT
+SB_LAYOUT: FULL
+FU_ILOG  FU_IMUL  FU_SHFT  
+FU_SHFT  FU_IDIV  FU_IADD  
+FU_IADD  FU_IMUL  FU_IDIV  
+FU_SHFT  FU_IADD  FU_IADD  
+
+#DY_LAYOUT: FULL
+#FU_ILOG  FU_FADD  FU_IADD  FU_IADD 
+#FU_SHFT  FU_FADD  FU_IADD  FU_FMUL 
+#FU_IMUL  FU_FMUL  FU_FDIV  FU_FMUL 
+#FU_FADD  FU_IADD  FU_ILOG  FU_FMUL 
+
+#DY_LAYOUT: RANDOM
+#FU_RATIO FU_ILOG:  8
+#FU_RATIO FU_SHFT:  8 
+#FU_RATIO FU_IADD:  8 
+#FU_RATIO FU_IMUL:  8 
+#FU_RATIO FU_IDIV:  2 
+#FU_RATIO FU_PHI_:  4 
+
+#FU_RATIO FU_FADD:  8 
+#FU_RATIO FU_FMUL:  8 
+#FU_RATIO FU_FDIV:  4 
+#FU_RATIO FU_SQRT:  4 
+#FU_RATIO FU_FSIN:  1 
+#FU_RATIO FU_FCOS:  1

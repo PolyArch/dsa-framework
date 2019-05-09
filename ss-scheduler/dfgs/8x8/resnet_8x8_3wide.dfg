@@ -1,0 +1,70 @@
+Input: TA[8]
+Input: TB[8]
+Input: TC[8]
+Input: TD[8]
+Input: TE[8]
+Input: TF[8]
+Input: reset
+ 
+A0 = Mul16x4(TA0, TB0);
+A1 = Mul16x4(TA1, TB1);
+A2 = Mul16x4(TA2, TB2);
+A3 = Mul16x4(TA3, TB3);
+A4 = Mul16x4(TA4, TB4);
+A5 = Mul16x4(TA5, TB5);
+A6 = Mul16x4(TA6, TB6);
+A7 = Mul16x4(TA7, TB7);
+
+RA0 = Add16x4(A0, A1);
+RA1 = Add16x4(A2, A3);
+RA2 = Add16x4(A4, A5);
+RA3 = Add16x4(A6, A7);
+
+SA0 = Add16x4(RA0, RA1);
+SA1 = Add16x4(RA2, RA3);
+
+B0 = Mul16x4(TC0, TD0);
+B1 = Mul16x4(TC1, TD1);
+B2 = Mul16x4(TC2, TD2);
+B3 = Mul16x4(TC3, TD3);
+B4 = Mul16x4(TC4, TD4);
+B5 = Mul16x4(TC5, TD5);
+B6 = Mul16x4(TC6, TD6);
+B7 = Mul16x4(TC7, TD7);
+
+RB0 = Add16x4(B0, B1);
+RB1 = Add16x4(B2, B3);
+RB2 = Add16x4(B4, B5);
+RB3 = Add16x4(B6, B7);
+
+SB0 = Add16x4(RB0, RB1);
+SB1 = Add16x4(RB2, RB3);
+
+C0 = Mul16x4(TE0, TF0);
+C1 = Mul16x4(TE1, TF1);
+C2 = Mul16x4(TE2, TF2);
+C3 = Mul16x4(TE3, TF3);
+C4 = Mul16x4(TE4, TF4);
+C5 = Mul16x4(TE5, TF5);
+C6 = Mul16x4(TE6, TF6);
+C7 = Mul16x4(TE7, TF7);
+
+RC0 = Add16x4(C0, C1);
+RC1 = Add16x4(C2, C3);
+RC2 = Add16x4(C4, C5);
+RC3 = Add16x4(C6, C7);
+
+SC0 = Add16x4(RC0, RC1);
+SC1 = Add16x4(RC2, RC3);
+
+UA = Add16x4(SA0, SA1);
+UB = Add16x4(SB0, SB1);
+UC = Add16x4(SC0, SC1);
+
+W0 = Add16x4(UA, UB);
+W1 = Add16x4(UC, W0);
+
+Out = Red16x4(W1, reset);
+
+Output: Out
+

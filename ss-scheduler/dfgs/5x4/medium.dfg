@@ -1,0 +1,14 @@
+
+Input: I [8]
+Input: A
+
+O0 =Add64(A,I0)
+O1 =Add64(A,I1)
+O2 =Add64(I2,A)
+O3 =Add64(I3,A)
+O4 =Add64(I4,A)
+O5 =Add64(I5,A)
+O6 =Add64(I6,A)
+O7 =Add64(I7,A)
+
+Output: O [8]

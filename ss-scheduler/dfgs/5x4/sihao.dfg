@@ -1,0 +1,12 @@
+Input: A
+Input: B
+
+C = Add(A,B)
+D = Sub(A,B)
+
+E = Mul(C,D)
+
+F = Add(D,E)
+
+Output: F
+

@@ -1,0 +1,7 @@
+.PHONY: directories 
+
+directories:
+	@${MKDIR_P} ${build}/obj
+	@${MKDIR_P} ${build}/lib
+
+

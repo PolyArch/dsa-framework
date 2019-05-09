@@ -1,0 +1,26 @@
+Input: A
+
+B = Add64(A,A)
+
+Output: B
+
+------
+
+#pragma group temporal
+
+Input: X[8]
+Input: Y
+
+Y1 = Add64(Y, X0)
+Y2 = Add64(Y, X1)
+Z0 = Add64(Y, X2)
+Z1 = Add64(Z0,X3)
+Z2 = Add64(Z1,X4)
+Z3 = Add64(Z2,X5)
+Z4 = Add64(Z3,X6)
+Z5 = Add64(Z4,X7)
+Z6 = Add64(Z5,Y1)
+Z7 = Add64(Z6,Y2)
+
+Output: Z[8]
+

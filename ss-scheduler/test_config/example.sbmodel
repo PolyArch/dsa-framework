@@ -1,0 +1,48 @@
+# Example DySER Model File
+
+# basic params
+topology: grid
+width: 4
+height: 4
+
+bw: 1
+bw_extra: 0.00
+
+io_layout: standard
+
+#  Possible DySER Instructions
+
+# fu_types and capabilities
+# Number after colon specifies encoding
+FU_TYPE FU_LOG:    XOR:0, AND:1, OR:2, BASIC_BLOCK:2
+FU_TYPE FU_SHF:    SHL:1, ASHR:2, LSHR:4
+FU_TYPE FU_ALU:    ADD, SUB, ICMP
+FU_TYPE FU_MUL:    MUL
+FU_TYPE FU_DIV:    UDIV, SDIV, UREM, SREM
+FU_TYPE FU_PHI:    PHI_STRICT, PHI_FWD, PHI_COMB
+FU_TYPE FU_CONV:   TRUNC, SEXT
+
+#FU_TYPE FU_SILLY:  PTRTOINT, INTTOPTR, BITCAST
+
+FU_TYPE FU_FALU:   FADD, FSUB, FCMP
+FU_TYPE FU_FMUL:   FMUL
+FU_TYPE FU_FDIV:   FDIV
+FU_TYPE FU_FCONV:  FPTRUNC, FPEXT, FPTOUI, FPTOSI, UITOFP, SITOFP
+
+#specify what the switch can do
+SWITCH_TYPE:   PHI_STRICT, PHI_FWD, PHI_COMB
+
+
+# Fully Specified Layout
+# note that the following lines most proceed the DY_LAYOUT
+SB_LAYOUT: FULL
+FU_LOG  FU_ALU  FU_ALU  FU_FDIV
+FU_ALU  FU_LOG  FU_ALU  FU_FMUL
+FU_ALU  FU_LOG  FU_DIV  FU_CONV
+FU_ALU  FU_LOG  FU_PHI  FU_FALU
+
+# Alternately: Layout Specified by percentiles
+# DY_LAYOUT = RATIO
+# FU_LOG: 10
+# FU_SHF: 20
+# FU_ALU: 40

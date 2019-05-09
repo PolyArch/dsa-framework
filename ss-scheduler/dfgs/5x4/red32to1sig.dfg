@@ -1,0 +1,31 @@
+Input: N [8]  # 8Wide 1Deep
+Input: S [8]  # 8Wide 1Deep
+Input: acc
+Input: pred
+
+M0 =Mul16x4(N0, S0)
+M1 =Mul16x4(N1, S1)
+M2 =Mul16x4(N2, S2)
+M3 =Mul16x4(N3, S3)
+M4 =Mul16x4(N4, S4)
+M5 =Mul16x4(N5, S5)
+M6 =Mul16x4(N6, S6)
+M7 =Mul16x4(N7, S7)
+
+A0 =Add16x4(M0, M1)
+A1 =Add16x4(M2, M3)
+A2 =Add16x4(M4, M5)
+A3 =Add16x4(M6, M7)
+
+A8 =Add16x4(A0, A1)
+A9 =Add16x4(A2, A3)
+
+A10 = Add16x4(A8, A9)
+
+R = Red16x4(A10, acc)
+
+out=Sig16(R,    pred)
+
+Output: out
+
+
