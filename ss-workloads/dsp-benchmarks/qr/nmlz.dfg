@@ -1,0 +1,25 @@
+Input: A [4]
+Input: B [4]
+
+RAB0 = FMul32x2(A0, B0)
+RAB1 = FMul32x2(A1, B1)
+RAB2 = FMul32x2(A2, B2)
+RAB3 = FMul32x2(A3, B3)
+
+IAB0 = FMulX32x2(A0, B0)
+IAB1 = FMulX32x2(A1, B1)
+IAB2 = FMulX32x2(A2, B2)
+IAB3 = FMulX32x2(A3, B3)
+
+AB0 = FSubAdd32x2(RAB0, IAB0)
+AB1 = FSubAdd32x2(RAB1, IAB1)
+AB2 = FSubAdd32x2(RAB2, IAB2)
+AB3 = FSubAdd32x2(RAB3, IAB3)
+
+AB_0 = AB0
+AB_1 = AB1
+AB_2 = AB2
+AB_3 = AB3
+
+Output: AB [4]
+Output: AB_ [4]

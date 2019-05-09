@@ -1,0 +1,19 @@
+Input: A [6]
+Input: reset
+
+AA0 = FMul32x2(A0, A0)
+AA1 = FMul32x2(A1, A1)
+AA2 = FMul32x2(A2, A2)
+AA3 = FMul32x2(A3, A3)
+AA4 = FMul32x2(A4, A4)
+AA5 = FMul32x2(A5, A5)
+
+T0 = FAdd32x2(AA0, AA1)
+T1 = FAdd32x2(AA2, AA3)
+T2 = FAdd32x2(AA4, AA5)
+T3 = FAdd32x2(T0, T1)
+T4 = FAdd32x2(T3, T2)
+
+O = FAcc32x2(T4, reset)
+
+Output: O

@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+
+while True:
+    try:
+        raw = input()
+        if raw.startswith('#'):
+            continue
+        inst, op_type, oprands = raw.split()
+        print('{"%s", "%s", "%s", MATCH_%s, MASK_%s, match_opcode, 0},' % (inst, op_type, oprands, inst.upper(), inst.upper()))
+    except:
+        break

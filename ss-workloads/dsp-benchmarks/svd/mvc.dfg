@@ -1,0 +1,11 @@
+Input: A
+Input: B
+Input: reset
+
+REAL = FMul32x2(A, B)
+IMAG = FMulX32x2(A, B)
+VAL = FAddSub32x2(REAL, IMAG)
+O = FAcc32x2(VAL, reset)
+
+Output: O
+

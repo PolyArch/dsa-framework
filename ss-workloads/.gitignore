@@ -1,0 +1,15 @@
+*.sw?
+*.exe
+*.data
+*.log
+*.o
+*.dfg.h
+
+viz/
+verif/
+stats/
+m5out/
+bin/
+
+*.pyc
+*.dot

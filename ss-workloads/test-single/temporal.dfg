@@ -1,0 +1,32 @@
+Input: DI
+
+DO=Add16x4(DI,1);
+
+Output: DO
+
+--------------------------
+
+#pragma group temporal
+
+Input: TI 
+
+T0=Add64(TI,1);
+T1=Add64(T0,1);
+T2=Add64(T1,1);
+T3=Add64(T2,1);
+T4=Add64(T3,1);
+T5=Add64(T4,1);
+T6=Add64(T5,1);
+T7=Add64(T6,1);
+T8=Add64(T7,1);
+T9=Add64(T8,1);
+T10=Add64(T9,1);
+T11=Add64(T10,1);
+T12=Add64(T11,1);
+T13=Add64(T12,1);
+T14=Add64(T13,1);
+TO=Add64(T14,1);
+
+
+Output: TO
+

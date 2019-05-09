@@ -1,0 +1,12 @@
+Input: A
+Input: B
+Input: C
+
+REAL = FMul32x2(A, B)
+IMAG = FMulX32x2(A, B)
+VAL = FAddSub32x2(REAL, IMAG)
+
+DELTA = FMul32x2(VAL, 4611686019501129728)
+O = FSub32x2(C, DELTA)
+
+Output: O

@@ -1,0 +1,21 @@
+InputVec: L [0, 1]
+InputVec: R [0, 1]
+Input: W
+
+TMP_REAL0 = FxMul16x4(R0, W)
+TMP_REAL1 = FxMul16x4(R1, W)
+
+TMP_IMAG0 = FxMulX16x4(R0, W)
+TMP_IMAG1 = FxMulX16x4(R1, W)
+
+TMP0 = FxSubAdd16x4(TMP_REAL0, TMP_IMAG0)
+TMP1 = FxSubAdd16x4(TMP_REAL1, TMP_IMAG1)
+
+A0 = FxAdd16x4(L0, TMP0)
+A1 = FxAdd16x4(L1, TMP1)
+B0 = FxSub16x4(L0, TMP0)
+B1 = FxSub16x4(L1, TMP1)
+
+OutputVec: A [0, 1]
+OutputVec: B [0, 1]
+

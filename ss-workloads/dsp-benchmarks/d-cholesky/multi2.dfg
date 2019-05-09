@@ -1,0 +1,69 @@
+Input: A
+Input: B [2]
+Input: V
+Input: Z [2]
+
+VA_R = FMul32(A:0:31, V:0:31)
+VA_I = FMul32(A:32:63, V:0:31)
+
+VA = VA_R VA_I
+
+R_AB0 = FMul32x2(VA, B0)
+R_AB1 = FMul32x2(VA, B1)
+
+t0 = FMul32(VA_R, B0:32:63)
+t1 = FMul32(VA_I, B0:0:31)
+
+u0 = FMul32(VA_R, B1:32:63)
+u1 = FMul32(VA_I, B1:0:31)
+
+AB0_R = FAdd32(R_AB0:0:31, R_AB0:32:63)
+AB0_I = FSub32(t0, t1)
+
+AB1_R = FAdd32(R_AB1:0:31, R_AB1:32:63)
+AB1_I = FSub32(u0, u1)
+
+C_AB0 = AB0_R AB0_I
+C_AB1 = AB1_R AB1_I
+
+O0 = FSub32x2(Z0, C_AB0)
+O1 = FSub32x2(Z1, C_AB1)
+
+Output: O [2]
+
+----
+
+Input: VAL
+
+sqrt = CplxSqrt(VAL)
+invsqrt  = CplxSqrtInv(VAL)
+invpure  = CplxInv(VAL)
+
+Output: sqrt
+Output: invsqrt
+Output: invpure
+
+----
+
+Input: VEC
+Input: DIV
+
+
+real = FMul32x2(VEC, DIV)
+imag0 = FMul32(VEC:0:31, DIV:32:63)
+imag1 = FMul32(VEC:32:63, DIV:0:31)
+
+a = FSub32(real:0:31, real:32:63)
+b = FAdd32(imag0, imag1)
+fin = a b
+
+Output: fin
+
+----
+
+Input: IN
+
+OUT = IN
+
+Output: OUT
+

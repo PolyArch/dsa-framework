@@ -1,0 +1,28 @@
+Input: M0
+Input: M1
+Input: A
+Input: B
+
+L0 = FMul32x2(A, M0)
+R0_REAL = FMul32x2(B, M1)
+R0_IMAG = FMulX32x2(B, M1)
+R0 = FSubAdd32x2(R0_REAL, R0_IMAG)
+
+L1_REAL = FMul32x2(M1, A)
+L1_IMAG = FMulX32x2(M1, A)
+L1 = FAddSub32x2(L1_REAL, L1_IMAG)
+R1 = NegFMul32x2(B, M0)
+
+O0 = FAdd32x2(L0, R0)
+O1 = FAdd32x2(L1, R1)
+
+Output: O0
+Output: O1
+
+---
+
+Input: VAL
+
+sqrt = RealSqrt(VAL)
+
+Output: sqrt
