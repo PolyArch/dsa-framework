@@ -1,0 +1,40 @@
+Input: NA [4]
+Input: SA [4]  
+Input: NB [4]
+Input: SB [4]  
+
+#compute lanes "A" and "B"
+
+MA0 =Mul16x4(NA0, SA0)
+MA1 =Mul16x4(NA1, SA1)
+MA2 =Mul16x4(NA2, SA2)
+MA3 =Mul16x4(NA3, SA3)
+
+SA0 =Add16x4(MA0, MA1)
+SA1 =Add16x4(MA2, MA3)
+
+SA2 =Add16x4(SA0, SA1)
+
+RA = Add16x4(SA2,0)
+
+out0 = Sig16(RA,0)
+
+
+
+MB0 =Mul16x4(NB0, SB0)
+MB1 =Mul16x4(NB1, SB1)
+MB2 =Mul16x4(NB2, SB2)
+MB3 =Mul16x4(NB3, SB3)
+
+SB0 =Add16x4(MB0, MB1)
+SB1 =Add16x4(MB2, MB3)
+
+SB2 =Add16x4(SB0, SB1)
+
+RB = Add16x4(SB2,0)
+
+out1 = Sig16(RB,0)
+
+Output: out [2]
+
+

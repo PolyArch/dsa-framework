@@ -1,0 +1,20 @@
+#R = A . B + carry
+
+Input: A [4] 
+Input: B [4] 
+Input: carry
+
+M0 = Mul16x4(A0 , B0 )
+M1 = Mul16x4(A1 , B1 )
+M2 = Mul16x4(A2 , B2 )
+M3 = Mul16x4(A3 , B3 )
+
+T0 = Add16x4(M0 , M1 )
+T1 = Add16x4(M2 , M3 )
+
+T2 = Add16x4(T0 , T1 )
+
+R =  Red16x4(T2, carry)
+
+Output: R
+

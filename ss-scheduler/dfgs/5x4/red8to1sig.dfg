@@ -1,0 +1,29 @@
+Input: N [2]  
+Input: S [4]  
+Input: acc [2]
+Input: pred
+
+#compute lanes "A" and "B"
+
+AM0 =Mul16x4(N0, S0)
+AM1 =Mul16x4(N1, S1)
+
+AS0 =Add16x4(AM0, AM1)
+
+AR = Red16x4(AS0, acc0)
+
+out0 = Sig16(AR, pred)
+
+
+
+BM0 =Mul16x4(N0, S2)
+BM1 =Mul16x4(N1, S3)
+
+BS0 =Add16x4(BM0, BM1)
+
+BR = Red16x4(BS0, acc1)
+
+out1 = Sig16(BR, pred)
+
+Output: out [2]
+

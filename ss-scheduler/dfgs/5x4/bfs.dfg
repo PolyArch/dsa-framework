@@ -1,0 +1,14 @@
+Input: H
+Input: L
+Input: ONE
+Input: reset
+
+IncH = Add64(H,ONE)
+Cond = ICmpEQ(L, H)
+
+NewL = Select(L,IncH,Cond)
+CNT  = Acc64(ONE,reset)
+
+Output: NewL
+Output: CNT
+

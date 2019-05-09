@@ -1,0 +1,17 @@
+*.Td
+*.d
+src/gams_models/*.h
+build/
+*.sw?
+drivers/ss_sched
+drivers/stat-config
+dfgs/*/*.h
+gams/
+verif/
+viz/
+julia/
+remap.dot
+compile_commands.json
+.idea
+CMakeLists.txt
+cmake-build-debug/*

@@ -1,0 +1,8 @@
+#pragma group temporal
+
+Input: X
+
+Z = Add64(X ,2)
+
+Output: Z
+

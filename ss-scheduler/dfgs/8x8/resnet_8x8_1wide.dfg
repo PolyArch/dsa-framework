@@ -1,0 +1,27 @@
+Input: TA[8]
+Input: TB[8]
+Input: reset 
+
+  A0 = Mul16x4(TA0, TB0);
+  A1 = Mul16x4(TA1, TB1);
+  A2 = Mul16x4(TA2, TB2);
+  A3 = Mul16x4(TA3, TB3);
+  A4 = Mul16x4(TA4, TB4);
+  A5 = Mul16x4(TA5, TB5);
+  A6 = Mul16x4(TA6, TB6);
+  A7 = Mul16x4(TA7, TB7);
+
+  RA0 = Add16x4(A0, A1);
+  RA1 = Add16x4(A2, A3);
+  RA2 = Add16x4(A4, A5);
+  RA3 = Add16x4(A6, A7);
+
+  SA0 = Add16x4(RA0, RA1);
+  SA1 = Add16x4(RA2, RA3);
+
+  UA = Add16x4(SA0, SA1);
+
+  Out = Red16x4(UA, reset);
+
+Output: Out
+

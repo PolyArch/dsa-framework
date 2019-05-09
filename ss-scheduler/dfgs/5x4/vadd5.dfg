@@ -1,0 +1,11 @@
+
+Input: I [5]
+Input: A [5]
+
+O0 =Add64(A0,I0)
+O1 =Add64(A1,I1)
+O2 =Add64(A2,I2)
+O3 =Add64(A3,I3)
+O4 =Add64(A4,I4)
+
+Output: O [5]

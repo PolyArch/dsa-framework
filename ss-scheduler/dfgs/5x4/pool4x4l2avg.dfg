@@ -1,0 +1,43 @@
+Input: R0
+Input: R1
+Input: R2
+Input: R3 
+Input: R4
+
+Input:  Xa [2] 
+Input:  Xb [2] 
+Input:  Xc [2] 
+
+R12=Add16x4(R1, R2)
+R123=Add16x4(R12, R3)
+R0123=Add16x4(R0,R123)
+R1234=Add16x4(R123, R4)
+
+Xd0=R0123
+Xd1=R1234
+
+Xcd0=Add16x4(Xc0,Xd0)
+Xcd1=Add16x4(Xc1,Xd1)
+
+Xab0=Add16x4(Xa0,Xb0)
+Xab1=Add16x4(Xa1,Xb1)
+
+O0_p=Add16x4(Xab0,Xcd0)
+O1_p=Add16x4(Xab1,Xcd1)
+
+O0=RShf16x4(O0_p,4)
+O1=RShf16x4(O1_p,4)
+
+Oa0=Xb0
+Oa1=Xb1
+Ob0=Xc0
+Ob1=Xc1
+Oc0=R0123
+Oc1=R1234
+
+Output:  Oa [2] 
+Output:  Ob [2] 
+Output:  Oc [2] 
+
+Output: O0
+Output: O1

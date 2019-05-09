@@ -1,0 +1,26 @@
+Input: I [8]      # Original Image  
+Input: F [4]      # Filter
+Input: C [8]      # Carry
+
+
+M0 = Mul64(I0, F0)
+M1 = Mul64(I1, F0)
+M2 = Mul64(I2, F1)
+M3 = Mul64(I3, F1)
+M4 = Mul64(I4, F2)
+M5 = Mul64(I5, F2)
+M6 = Mul64(I6, F3)
+M7 = Mul64(I7, F3)
+
+O0 = Add64(M0, C0)
+O1 = Add64(M1, C1)
+O2 = Add64(M2, C2)
+O3 = Add64(M3, C3)
+O4 = Add64(M4, C4)
+O5 = Add64(M5, C5)
+O6 = Add64(M6, C6)
+O7 = Add64(M7, C7)
+
+Output: O [8]
+
+

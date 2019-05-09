@@ -1,0 +1,29 @@
+Input: R0
+Input: R1
+Input: R2
+Input: R3 
+Input: R4
+
+Input: P [4] 
+
+I0 =Add16x4(R0, R1)
+I1 =Add16x4(R1, R2)
+I2 =Add16x4(R2, R3)
+I3 =Add16x4(R3, R4)
+
+H0 =Add16x4(P0, I0)
+H1 =Add16x4(P1, I1)
+H2 =Add16x4(P2, I2)
+H3 =Add16x4(P3, I3)
+
+O0=RShf16x4(H0,2)
+O1=RShf16x4(H1,2)
+O2=RShf16x4(H2,2)
+O3=RShf16x4(H3,2)
+
+Output: I [4]
+
+Output: O0
+Output: O1
+Output: O2
+Output: O3

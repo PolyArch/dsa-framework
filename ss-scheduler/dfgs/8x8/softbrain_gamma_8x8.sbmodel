@@ -1,0 +1,95 @@
+#Execution model for softbrain
+#[exec-model]
+#CMD_DISPATCH: IN_ORDER  #Options: IN_ORDER / OUT_OF_ORDER
+
+# FU Types and capabilities
+# <TYPE>: <Operation_Type>:<opcode>
+[fu-model]
+FU_TYPE FU_ALL:  Mul16x4:2, Mul32x2:3, Mul64:4, RShf64:5, LShf64:6, Add16x4:20, Red16x4:21
+
+#Output directions
+OUT_DIRECTIONS: NE:0 SE:1 SW:2 NW:3
+
+#Switch directions
+[switch-model]
+IN_DIRECTIONS: N:0 NE:1 E:2 S:3 W:4
+
+#Substrate Model
+[sub-model]
+topology: grid
+width: 8
+height: 8
+
+#IO Layout of CGRA
+io_layout: three_sides_in
+ins_per_switch: 3
+outs_per_switch: 3
+
+# FU Layout
+SB_LAYOUT: FULL
+FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL
+FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL
+FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL
+FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL
+FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL
+FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL
+FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL
+FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL  FU_ALL
+
+
+temporal_width: 8
+temporal_height: 8
+temporal_x: 0
+temporal_y: 0
+
+
+
+
+#Vector port model
+#<PORT_NUM>: <CGRA input link>:<vector offset>
+[io-model]
+#VPORT_IN 0:  0:0,  3:1,  6:2,   9:3, 12:4, 15:5, 18:6, 21:7
+#VPORT_IN 1:  1:0,  4:1,  7:2,  10:3, 13:4, 16:5, 19:6, 22:7
+VPORT_IN 2:  2:0,  5:1,  8:2,  11:3, 14:4, 17:5, 20:6, 23:7
+#VPORT_IN 3:  24:0, 27:1, 30:2, 33:3, 36:4, 39:5, 42:6, 45:7
+#VPORT_IN 4:  25:0, 28:1, 31:2, 34:3, 37:4, 40:5, 43:6, 46:7
+VPORT_IN 5:  26:0, 29:1, 32:2, 35:3, 38:4, 41:5, 44:6, 47:7
+#VPORT_IN 6:  48:0, 51:1, 54:2, 57:3, 60:4, 63:5, 66:6, 69:7 
+#VPORT_IN 7:  49:0, 52:1, 55:2, 58:3, 61:4, 64:5, 67:6, 70:7 
+VPORT_IN 8:  50:0, 53:1, 56:2, 59:3, 62:4, 65:5, 68:6, 71:7 
+#
+## middle guys
+#VPORT_IN 9:   72:0,  75:1,  78:2, 81:3,   84:4, 87:5,  90:6,  93:7
+#VPORT_IN 10:   73:0,  76:1,  79:2, 82:3,   85:4, 88:5,  91:6,  94:7
+#VPORT_IN 11:  74:0,  77:1,  80:2, 83:3,   86:4, 89:5,  92:6,  95:7
+
+#Q3
+VPORT_IN 20:  0:0,  3:1,  6:2,   9:3, 72:4, 75:5,  78:6, 81:7
+VPORT_IN 21:  1:0,  4:1,  7:2,  10:3, 73:4, 76:5,  79:6, 82:7
+#VPORT_IN 22:  2:0,  5:1,  8:2,  11:3, 74:4, 77:5,  80:6, 83:7
+
+#Q1
+VPORT_IN 23: 12:0, 15:1, 18:2, 21:3, 24:4, 27:5, 30:6, 33:7 
+VPORT_IN 24: 13:0, 16:1, 19:2, 22:3, 25:4, 28:5, 31:6, 34:7 
+#VPORT_IN 25: 14:0, 17:1, 20:2, 23:3, 26:4, 29:5, 32:6, 35:7 
+
+#Q2
+VPORT_IN 26: 36:0, 39:1, 42:2, 45:3, 48:4, 51:5, 54:6, 57:7 
+VPORT_IN 27: 37:0, 40:1, 43:2, 46:3, 49:4, 52:5, 55:6, 58:7 
+#VPORT_IN 28: 38:0, 41:1, 44:2, 47:3, 50:4, 53:5, 56:6, 59:7 
+
+#Q4
+VPORT_IN 29: 84:0, 87:1, 90:2, 93:3, 60:4, 63:5, 66:6, 69:7 
+VPORT_IN 30: 85:0, 88:1, 91:2, 94:3, 61:4, 64:5, 67:6, 70:7 
+#VPORT_IN 31: 86:0, 89:1, 92:2, 95:3, 62:4, 65:5, 68:6, 71:7 
+
+
+#VPORT_IN 8:   72:0  75:1  78:2 81:3   84:4 87:5  90:6  93:7
+#VPORT_IN 9:   73:0  76:1  79:2 82:3   85:4 88:5  91:6  94:7
+#VPORT_IN 10:  74:0  77:1  80:2 83:3   86:4 89:5  92:6  95:7
+
+
+##Output ports
+VPORT_OUT 0: 0:0, 3:1, 6:2, 9:3, 12:4, 15:5, 18:6, 21:7
+VPORT_OUT 1: 1:0, 4:1, 7:2, 10:3, 13:4, 16:5, 19:6, 22:7
+VPORT_OUT 2: 2:0, 5:1, 8:2, 11:3, 14:4, 17:5, 20:6, 23:7
