@@ -27,30 +27,19 @@ Easy Build Instructions:
 ------------------------
 1. Clone this repo in from git
 ````
-git clone --recursive git@github.com:PolyArch/ss-stack.git
+git clone --recursive https://github.com/PolyArch/ss-release
 ````
 
-2. Checkout the latest version
-````
-make update
-````
-
-3. Export the SS environment variable:
-````
-export SS=`pwd`
-````
-You may want to hard code this in a local bash setup file `.bashrc`.
-
-4. Source the setup.sh script:
+2. Source the setup.sh script:
 ````
 source setup.sh
 ````
 
-5. Build the software:
+3. Build the software:
 ````
-make
+make build-all
 ````
-NOTE: DO NOT use `-j8`, which may cause dependence problem!
+NOTE: DO NOT use `-j`, which may cause dependence problem!
 
 ___
 
@@ -64,7 +53,7 @@ make full-rebuild
 
 * Incremental rebuild should mostly only do what is necessary (still slower than building one library):
 ````
-make
+make build-all
 ````
 
 * You can make an individual library by doing this (eg. ss-scheduler).
