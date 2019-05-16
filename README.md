@@ -27,7 +27,7 @@ Easy Build Instructions:
 ------------------------
 1. Clone this repo in from git
 ````
-git clone --recursive https://github.com/PolyArch/ss-release
+git clone --recursive https://github.com/PolyArch/stream-specialization-stack
 ````
 
 2. Source the setup.sh script:
