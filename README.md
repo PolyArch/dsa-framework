@@ -1,7 +1,16 @@
 Stream Specialization Stack
 ===========================
 
-About:
+A compiler, simulator, and modeling envorinment for stream-dataflow-based architectures.
+
+The following are the main submodules:
+* Implementation of stream-dataflow++ within RISCV *(riscv-opcodes)*
+* Gem5 Simulator *(gem5)*
+* Modified RISCV Compiler *(riscv-gnu-toolchain)*
+* Architecture Modeling Tools + Dataflow Graph Compiler *(ss-scheduler)*
+* Example Workloads *(ss-workloads)*
+
+Note on building:
 ------
  - Follow the provided instructions to build the stream specialized software stack locally
  - There may be some dependences which are not listed, install as necessary for now.
@@ -23,7 +32,7 @@ sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev
 
 ___
 
-Easy Build Instructions:
+Quick Build Instructions:
 ------------------------
 1. Clone this repo in from git
 ````
@@ -62,29 +71,18 @@ make ss-scheduler
 ````
 
 
-Some Notes on Building
+Notes on Environment Setup
 ----------------------
 
 * The setup.sh initialies some environment variables
   * `SS_STACK:` This is the location of this repository
   * `SS_TOOLS:` This is the location of any installed files.
 
+Citation
+----------------------
 
-Runing an example workload through simulation:
-----------------------------------------------
+If you use this repository in your work, please consider citing the following:
 
-Go into `ss-workloads/dsp-benchmarks` and attempt a build.
+Stream-Dataflow Acceleration, ISCA 2019, Tony Nowatzki, Vinay Gangadhar, Newsha Ardalani, Karthikeyan Sankaralingam	
+https://doi.org/10.1145/3079856.3080255
 
-For each workloads in this folder, you can type `make sb-\*.log` to simulate the corresponding workloads.
-
-* origin: This is for the very original Softbrain's performance.
-* new: This is for our new architecture REVEL's performance.
-* access: This is to see the performance effects of the specialized data streams.
-* conc: This is to see the performance effects of allowing multiple DFGs on the CGRA (and access).
-* hetro: This is to see the performance effects of adding temporal region (accompanied with both access and conc).
-
-
-````
-cd ss-workloads/dsp-benchmarks/cholesky
-make sb-new.log
-````
