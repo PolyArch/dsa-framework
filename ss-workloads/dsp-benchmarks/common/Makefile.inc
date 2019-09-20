@@ -22,7 +22,7 @@ DFG_HEADERS = $(DFG:.dfg=.dfg.h)
 $(DFG_HEADERS): %.dfg.h: %.dfg
 	$(SS_TOOLS)/bin/ss_sched -a sa --max-iters 20000 -d $(FIFO_DEPTH) --verbose $(SBCONFIG) $< 
 
-IFLAGS=-I../../common/include -I../../../ss-tools/include -I../common/ -I$(SS_TOOLS)/include/ss-intrin
+IFLAGS=-I../../common/include -I$(SS_TOOLS)/include -I../common/ -I$(SS_TOOLS)/include/ss-intrin
 INTELI=-I/opt/intel/include -I/opt/intel/mkl/include/
 #CFLAGS=-O3 -std=c++17
 CFLAGS=-Ofast -std=c++17
@@ -61,13 +61,13 @@ mkl.exe: mkl.cc
 
 ooo.log: optimized.exe input.data ref.data
 	SBCONFIG=$(SBCONFIG) \
-	gem5.opt ~/ss-stack/gem5/configs/example/se.py --cpu-type=detailed --l1d_size=64kB --l1i_size=16kB --l2_size=1024kB --caches --l2cache --cmd=./$< \
+	gem5.opt $(SS)/gem5/configs/example/se.py --cpu-type=detailed --l1d_size=64kB --l1i_size=16kB --l2_size=1024kB --caches --l2cache --cmd=./$< \
 	| tee $@
 
 $(LOGS): %.log: %.exe input.data ref.data
 	SBCONFIG=$(SBCONFIG) \
 	FU_FIFO_LEN=$(FIFO_DEPTH) \
-	gem5.opt ~/ss-stack/gem5/configs/example/se.py --cpu-type=MinorCPU \
+	gem5.opt $(SS)/gem5/configs/example/se.py --cpu-type=MinorCPU \
 	--l1d_size=2048kB --l1d_assoc=32 --l1i_size=16kB --l2_size=1024kB --caches --cmd=./$< \
 	| tee $@
 	
