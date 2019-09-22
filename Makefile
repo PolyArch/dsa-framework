@@ -3,6 +3,8 @@ default: build-all
 
 include msg.mk
 
+JOBS = 4
+
 RVTOOLS = riscv-gnu-toolchain riscv-opcodes
 
 SS_SCHED = ss-scheduler
@@ -20,7 +22,7 @@ build-all: $(MODULES)
 clean-all: $(CLEAN_MODULES)
 
 $(GEM5): ss-scheduler
-	cd $@; scons build/RISCV/gem5.opt -j7
+	cd $@; scons build/RISCV/gem5.opt -j$(JOBS)
 
 .PHONY: $(SS_SCHED)
 $(SS_SCHED):
@@ -38,7 +40,7 @@ clean-ss: clean-$(SS_SCHED)
 riscv-gnu-toolchain: riscv-opcodes
 	mkdir -p $@/build
 	cd $@ && autoreconf -fiv && cd build && ../configure --prefix=$(SS_TOOLS)/
-	$(MAKE) -C $@/build -j9
+	$(MAKE) -C $@/build -j$(JOBS)
 
 riscv-opcodes:
 	make -C $@ install-ss

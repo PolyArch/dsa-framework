@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys, numpy, random, imp
-from math import sin, cos, pi 
+from math import sin, cos, pi
 output = imp.load_source('output', '../common/output.py')
 
 n = int(sys.argv[1])
@@ -10,7 +10,7 @@ m = int(sys.argv[2])
 if not (m % 2):
     exit()
 
-numpy.set_printoptions(suppress = True, precision = 4., linewidth = 180, threshold = numpy.nan)
+numpy.set_printoptions(suppress = True, precision = 4., linewidth = 180, threshold = sys.maxsize)
 
 a = numpy.random.rand(n).astype('complex64') + 1j * numpy.random.rand(n).astype('complex64')
 b = numpy.random.rand(m // 2).astype('complex64') + 1j * numpy.random.rand(m // 2).astype('complex64')

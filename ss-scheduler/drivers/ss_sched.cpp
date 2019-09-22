@@ -178,13 +178,14 @@ int main(int argc, char* argv[])
   Schedule* sched=nullptr;
 
   //Scheduler scheduler(&ssmodel);
+  /* gams scheduler is not available in repo
   if(str_schedType == "gams") {
     auto* scheduler_gams = new GamsScheduler(&ssmodel);
     scheduler_gams->showGams(show_gams);
     scheduler_gams->setMipstart(mipstart);
     scheduler_gams->setSll(sll);
     scheduler = scheduler_gams;
-  } else if(str_schedType == "sa") { /*simulated annealing*/
+  } else*/ if(str_schedType == "sa") { /*simulated annealing*/
     scheduler = new SchedulerSimulatedAnnealing(&ssmodel);
   } else {
     cerr <<  "Something Went Wrong with Default Scheduler String";

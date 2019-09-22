@@ -27,7 +27,7 @@ If you are on Ubuntu, try this:
 sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev \
   libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc \
   qt4-dev-tools libqt4-dev python-dev scons libboost-regex-dev \
-  libboost-serialization-dev libgoogle-perftools-dev
+  libboost-serialization-dev libgoogle-perftools-dev libbison-dev parallel
 ````
 
 ___
@@ -48,7 +48,11 @@ source setup.sh
 ````
 make build-all
 ````
-NOTE: DO NOT use `-j`, which may cause dependence problem!
+NOTE: DO NOT use `-j`, which may cause dependence problem!  
+You can set JOBS=n to attribute parallelizable build commands.
+````
+JOBS=4 make build-all
+````
 
 ___
 
