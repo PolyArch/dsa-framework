@@ -1,8 +1,0 @@
-Input: BP
-Input: DIV
-
-REAL = FMul32x2(DIV, BP)
-IMAG = FMulX32x2(DIV, BP)
-RES = FSubAdd32x2(REAL, IMAG)
-
-Output: RES

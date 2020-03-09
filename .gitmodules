@@ -1,0 +1,15 @@
+[submodule "dsa-gem5"]
+	path = dsa-gem5
+	url = https://github.com/polyarch/dsa-gem5
+[submodule "dsa-riscv-gnu-toolchain"]
+	path = dsa-riscv-gnu-toolchain
+	url = https://github.com/polyarch/dsa-riscv-gnu-toolchain
+[submodule "dsa-riscv-opcodes"]
+	path = dsa-riscv-opcodes
+	url = https://github.com/polyarch/dsa-riscv-opcodes
+[submodule "spatial-scheduler"]
+	path = spatial-scheduler
+	url = https://github.com/polyarch/spatial-scheduler
+[submodule "dsa-apps"]
+	path = dsa-apps
+	url = https://github.com/polyarch/dsa-apps

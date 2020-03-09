@@ -1,1 +1,0 @@
-return ops[0];

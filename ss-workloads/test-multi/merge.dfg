@@ -1,6 +1,0 @@
-Input: in1
-Input: in2
-
-out=MergeSentinal(in1,in2);
-
-Output: out

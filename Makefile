@@ -8,6 +8,8 @@ RVTOOLS = riscv-gnu-toolchain riscv-opcodes
 SS_SCHED = ss-scheduler
 GEM5     = gem5
 
+SS_LLVM = ss-llvm
+
 MODULES = $(RVTOOLS) $(SS_SCHED) $(GEM5) $(SS_LLVM)
 CLEAN_MODULES = $(addprefix clean-,$(MODULES))
 
@@ -22,9 +24,14 @@ clean-all: $(CLEAN_MODULES)
 $(GEM5): ss-scheduler
 	cd $@; scons build/RISCV/gem5.opt -j7
 
+$(GEM5)-debug: ss-scheduler
+	cd $(GEM5); scons build/RISCV/gem5.debug -j7
+
 .PHONY: $(SS_SCHED)
 $(SS_SCHED):
-	make -C $@ install
+	mkdir -p $@/build
+	cd $@/build && cp ../config.cmake . && cmake ..
+	make -C $@/build install -j
 
 .PHONY: clean-$(SS_SCHED)
 clean-$(SS_SCHED):
@@ -37,8 +44,21 @@ clean-ss: clean-$(SS_SCHED)
 
 riscv-gnu-toolchain: riscv-opcodes
 	mkdir -p $@/build
-	cd $@ && autoreconf -fiv && cd build && ../configure --prefix=$(SS_TOOLS)/
-	$(MAKE) -C $@/build -j9
+	cd $@ && autoreconf -fiv && cd build && ../configure --prefix=$(SS_TOOLS)/ # --enable-multilib
+	$(MAKE) linux -C $@/build -j9
+
+ss-llvm:
+	cd $@; mkdir -p build; cd build;                          \
+	cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug"      \
+	  -DBUILD_SHARED_LIBS=True -DLLVM_USE_SPLIT_DWARF=True    \
+	  -DLLVM_OPTIMIZED_TABLEGEN=True -DLLVM_BUILD_TESTS=False \
+	  -DDEFAULT_SYSROOT=$(SS_TOOLS)/riscv64-unknown-elf       \
+	  -DGCC_INSTALL_PREFIX=$(SS_TOOLS)                        \
+	  -DCMAKE_INSTALL_PREFIX=$(SS_TOOLS)                      \
+	  -DLLVM_DEFAULT_TARGET_TRIPLE="riscv64-unknown-elf"      \
+	  -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="RISCV"            \
+          -DCMAKE_CROSSCOMPILING=True -DLLVM_ENABLE_RTTI=ON ..
+	make -C $@/build install -j9
 
 riscv-opcodes:
 	make -C $@ install-ss

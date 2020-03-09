@@ -1,7 +1,0 @@
-dfg-lex.yy.c
-dfg-lex.yy.o
-dfg-parser.output
-dfg-parser.tab.c
-dfg-parser.tab.h
-dfg-parser.tab.o
-gams_models/*

@@ -1,8 +1,0 @@
-Input: in [4]
-
-out0=Add64(in0,0x1);
-out1=Add64(in1,0x1);
-out2=Add64(in2,0x1);
-out3=Add64(in3,0x1);
-
-Output: out [4]
