@@ -3,10 +3,10 @@ default: build-all
 
 include msg.mk
 
-RVTOOLS = riscv-gnu-toolchain riscv-opcodes
+RVTOOLS = dsa-riscv-gnu-toolchain dsa-riscv-opcodes
 
-SS_SCHED = ss-scheduler
-GEM5     = gem5
+SS_SCHED = spatial-scheduler
+GEM5     = dsa-gem5
 
 SS_LLVM = ss-llvm
 
@@ -21,15 +21,17 @@ build-all: $(MODULES)
 .PHONY: clean-all
 clean-all: $(CLEAN_MODULES)
 
-$(GEM5): ss-scheduler
+$(GEM5): spatial-scheduler
 	cd $@; scons build/RISCV/gem5.opt -j7
 
-$(GEM5)-debug: ss-scheduler
+$(GEM5)-debug: spatial-scheduler
 	cd $(GEM5); scons build/RISCV/gem5.debug -j7
 
 .PHONY: $(SS_SCHED)
 $(SS_SCHED):
 	mkdir -p $@/build
+	cd $@/build && cp ../config.cmake . && cmake ..
+	# cmake it twice to include the ssinst.h
 	cd $@/build && cp ../config.cmake . && cmake ..
 	make -C $@/build install -j
 
@@ -42,22 +44,21 @@ clean-ss: clean-$(SS_SCHED)
 
 # riscv-pk uses a special set of configure flags
 
-riscv-gnu-toolchain: riscv-opcodes
+dsa-riscv-gnu-toolchain: dsa-riscv-opcodes
 	mkdir -p $@/build
 	cd $@ && autoreconf -fiv && cd build && ../configure --prefix=$(SS_TOOLS)/ # --enable-multilib
 	$(MAKE) linux -C $@/build -j9
 
 ss-llvm:
-	cd $@; mkdir -p build; cd build;                          \
-	cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Debug"      \
-	  -DBUILD_SHARED_LIBS=True -DLLVM_USE_SPLIT_DWARF=True    \
-	  -DLLVM_OPTIMIZED_TABLEGEN=True -DLLVM_BUILD_TESTS=False \
-	  -DDEFAULT_SYSROOT=$(SS_TOOLS)/riscv64-unknown-elf       \
-	  -DGCC_INSTALL_PREFIX=$(SS_TOOLS)                        \
-	  -DCMAKE_INSTALL_PREFIX=$(SS_TOOLS)                      \
-	  -DLLVM_DEFAULT_TARGET_TRIPLE="riscv64-unknown-elf"      \
-	  -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="RISCV"            \
-          -DCMAKE_CROSSCOMPILING=True -DLLVM_ENABLE_RTTI=ON ..
+	cd $@; mkdir -p build; cd build;                                    \
+	cmake -G "Unix Makefiles"                                           \
+	      -DBUILD_SHARED_LIBS=ON -DLLVM_USE_SPLIT_DWARF=ON              \
+              -DCMAKE_INSTALL_PREFIX=$SS_TOOLS -DLLVM_OPTIMIZED_TABLEGEN=ON \
+              -DLLVM_BUILD_TESTS=False -DLLVM_TARGETS_TO_BUILD=""           \
+              -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="RISCV"                  \
+              -DLLVM_DEFAULT_TARGET_TRIPLE=riscv64-unknown-elf              \
+              -DCMAKE_CROSSCOMPILING=True -DLLVM_ENABLE_RTTI=ON             \
+              -DLLVM_ENABLE_PROJECTS="clang" ../llvm
 	make -C $@/build install -j9
 
 riscv-opcodes:
@@ -77,12 +78,12 @@ full-rebuild:
 
 .PHONY: rebuild-ss
 rebuild-ss: 
-	$(MAKE) clean-ss-scheduler
-	$(MAKE) ss-scheduler gem5
+	$(MAKE) clean-spatial-scheduler
+	$(MAKE) spatial-scheduler gem5
 
 .PHONY: build-ss
 build-ss: 
-	$(MAKE) ss-scheduler gem5
+	$(MAKE) spatial-scheduler gem5
 
 .PHONY: update
 update:

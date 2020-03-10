@@ -13,3 +13,6 @@
 [submodule "dsa-apps"]
 	path = dsa-apps
 	url = https://github.com/polyarch/dsa-apps
+[submodule "dsa-transformation"]
+	path = dsa-transformation
+	url = https://github.com/polyarch/dsa-transformation
