@@ -83,6 +83,6 @@ Citation
 
 If you use this repository in your work, please consider citing the following:
 
-Stream-Dataflow Acceleration, ISCA 2019, Tony Nowatzki, Vinay Gangadhar, Newsha Ardalani, Karthikeyan Sankaralingam	
+Stream-Dataflow Acceleration, ISCA 2017, Tony Nowatzki, Vinay Gangadhar, Newsha Ardalani, Karthikeyan Sankaralingam	
 https://doi.org/10.1145/3079856.3080255
 
