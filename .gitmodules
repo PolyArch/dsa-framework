@@ -16,3 +16,6 @@
 [submodule "dsa-transformation"]
 	path = dsa-transformation
 	url = https://github.com/polyarch/dsa-transformation
+[submodule "dsa-llvm-project"]
+	path = dsa-llvm-project
+	url = https://github.com/PolyArch/dsa-llvm-project
