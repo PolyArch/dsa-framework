@@ -1,9 +1,6 @@
 [submodule "dsa-gem5"]
 	path = dsa-gem5
 	url = https://github.com/polyarch/dsa-gem5
-[submodule "dsa-riscv-gnu-toolchain"]
-	path = dsa-riscv-gnu-toolchain
-	url = https://github.com/polyarch/dsa-riscv-gnu-toolchain
 [submodule "dsa-riscv-opcodes"]
 	path = dsa-riscv-opcodes
 	url = https://github.com/polyarch/dsa-riscv-opcodes
@@ -13,9 +10,6 @@
 [submodule "dsa-apps"]
 	path = dsa-apps
 	url = https://github.com/polyarch/dsa-apps
-[submodule "dsa-transformation"]
-	path = dsa-transformation
-	url = https://github.com/polyarch/dsa-transformation
 [submodule "dsa-llvm-project"]
 	path = dsa-llvm-project
 	url = https://github.com/PolyArch/dsa-llvm-project
