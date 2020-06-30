@@ -40,8 +40,8 @@ clean-gnu:
 
 .PHONY: llvm-project
 dsa-llvm-project: riscv-gnu-toolchain
-	cd $@ && mkdir -p build && cd build &&                                \
-	cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release"                \
+	cd $@ && mkdir -p build && cd build &&                          \
+	cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release"          \
         -DBUILD_SHARED_LIBS=ON -DLLVM_USE_SPLIT_DWARF=ON                \
         -DCMAKE_INSTALL_PREFIX=$(SS_TOOLS) -DLLVM_OPTIMIZED_TABLEGEN=ON \
         -DLLVM_BUILD_TESTS=False -DLLVM_TARGETS_TO_BUILD=""             \
@@ -58,7 +58,9 @@ clean-llvm:
 
 .PHONY: dsa-pass
 dsa-xform: llvm-project
-	cd $@ && mkdir -p build && cd build && cmake .. && make -j
+	cd $@ && mkdir -p build && cd build &&      \
+	cmake .. -DCMAKE_INSTALL_PREFIX=$(SS_TOOLS) \
+	         -DCMAKE_BUILD_TYPE=Release && make install -j
 
 clean-xform:
 	cd dsa-xform/build && make clean
