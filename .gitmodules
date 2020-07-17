@@ -19,3 +19,9 @@
 [submodule "riscv-gnu-toolchain"]
 	path = riscv-gnu-toolchain
 	url = https://github.com/riscv/riscv-gnu-toolchain
+[submodule "dsa-docs"]
+	path = docs
+	url = https://github.com/polyarch/dsa-docs
+[submodule "docs"]
+	path = docs
+	url = https://github.com/polyarch/dsa-docs
