@@ -3,10 +3,10 @@ default: all
 include msg.mk
 
 .PHONY: all
-all: dsa-gem5 spatial-scheduler riscv-gnu-toolchain dsa-llvm-project dsa-xform
+all: dsa-gem5 spatial-scheduler riscv-gnu-toolchain dsa-llvm-project
 
 .PHONY: clean
-clean: clean-gem5 clean-scheduler clean-gnu clean-llvm clean-xform
+clean: clean-gem5 clean-scheduler clean-gnu clean-llvm
 	rm -rf ss-tools
 
 .PHONY: dsa-gem5
@@ -55,12 +55,3 @@ dsa-llvm-project: riscv-gnu-toolchain
 
 clean-llvm:
 	make -C dsa-llvm-project/build clean
-
-.PHONY: dsa-pass
-dsa-xform: llvm-project
-	cd $@ && mkdir -p build && cd build &&      \
-	cmake .. -DCMAKE_INSTALL_PREFIX=$(SS_TOOLS) \
-	         -DCMAKE_BUILD_TYPE=Release && make install -j
-
-clean-xform:
-	cd dsa-xform/build && make clean
