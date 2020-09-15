@@ -51,7 +51,7 @@ dsa-llvm-project: riscv-gnu-toolchain
         -DLLVM_DEFAULT_TARGET_TRIPLE="riscv64-unknown-elf"              \
         -DCMAKE_CROSSCOMPILING=True -DLLVM_ENABLE_RTTI=ON               \
         -DLLVM_ENABLE_PROJECTS="clang" ../llvm
-	make -C $@/build install -j$$((`nproc`/2))
+	make -C $@/build install -j$$((`nproc`+1/2))
 
 clean-llvm:
 	make -C dsa-llvm-project/build clean
