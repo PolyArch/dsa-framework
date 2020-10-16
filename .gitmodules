@@ -25,3 +25,6 @@
 [submodule "docs"]
 	path = docs
 	url = https://github.com/polyarch/dsa-docs
+[submodule "dsa-cgra-gen"]
+	path = dsa-cgra-gen
+	url = git@github.com:PolyArch/dsa-cgra-gen.git
