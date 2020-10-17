@@ -14,7 +14,7 @@ dsa-gem5: spatial-scheduler
 	cd $@ && scons build/RISCV/gem5.opt build/RISCV/gem5.debug -j`nproc`
 
 clean-gem5:
-	cd gem5 && scons -c build/RISCV/gem5.opt build/RISCV/gem5.debug -j`nproc`
+	cd dsa-gem5 && scons -c build/RISCV/gem5.opt build/RISCV/gem5.debug -j`nproc`
 
 .PHONY: spatial-scheduler
 spatial-scheduler:
@@ -33,7 +33,8 @@ riscv-gnu-patch:
 .PHONY: riscv-gnu-toolchain
 riscv-gnu-toolchain: riscv-gnu-patch
 	cd $@ && ./configure --prefix=$(SS_TOOLS)/ --enable-multilib &&  \
-	make -j
+	make -j &&                                                       \
+	LD_LIBRARY_PATH="" make linux -j
 
 clean-gnu:
 	make -C riscv-gnu-toolchain clean
