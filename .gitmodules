@@ -1,30 +1,15 @@
-[submodule "dsa-gem5"]
-	path = dsa-gem5
-	url = https://github.com/polyarch/dsa-gem5
-[submodule "spatial-scheduler"]
-	path = spatial-scheduler
-	url = https://github.com/polyarch/spatial-scheduler
 [submodule "dsa-apps"]
 	path = dsa-apps
 	url = https://github.com/polyarch/dsa-apps
-[submodule "dsa-llvm-project"]
-	path = dsa-llvm-project
-	url = https://github.com/PolyArch/dsa-llvm-project
 [submodule "dsa-xform"]
 	path = dsa-xform
 	url = https://github.com/polyarch/dsa-xform
-[submodule "dsa-riscv-ext"]
-	path = dsa-riscv-ext
-	url = https://github.com/polyarch/dsa-riscv-ext
-[submodule "riscv-gnu-toolchain"]
-	path = riscv-gnu-toolchain
-	url = https://github.com/riscv/riscv-gnu-toolchain
 [submodule "dsa-docs"]
 	path = docs
 	url = https://github.com/polyarch/dsa-docs
 [submodule "docs"]
 	path = docs
 	url = https://github.com/polyarch/dsa-docs
-[submodule "dsa-cgra-gen"]
-	path = dsa-cgra-gen
-	url = https://github.com/polyarch/dsa-cgra-gen
+[submodule "dsa-scheduler"]
+	path = dsa-scheduler
+	url = https://github.com/polyarch/dsa-scheduler

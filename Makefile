@@ -3,28 +3,25 @@ default: all
 include msg.mk
 
 .PHONY: all
-all: dsa-gem5 spatial-scheduler riscv-gnu-toolchain dsa-llvm-project
+all: dsa-gem5 dsa-scheduler riscv-gnu-toolchain dsa-llvm-project
 
 .PHONY: clean
 clean: clean-gem5 clean-scheduler clean-gnu clean-llvm
 	rm -rf ss-tools
 
 .PHONY: dsa-gem5
-dsa-gem5: spatial-scheduler
+dsa-gem5: dsa-scheduler
 	cd $@ && scons build/RISCV/gem5.opt build/RISCV/gem5.debug -j`nproc`
 
 clean-gem5:
 	cd dsa-gem5 && scons -c build/RISCV/gem5.opt build/RISCV/gem5.debug -j`nproc`
 
-.PHONY: spatial-scheduler
-spatial-scheduler:
-	mkdir -p $@/build
-	cd $@/build && cp ../config.cmake . &&      \
-	cmake .. -DCMAKE_INSTALL_PREFIX=$(SS_TOOLS)
-	make -C $@/build install -j
+.PHONY: dsa-scheduler
+dsa-scheduler:
+	cd $@ && make all -j
 
 clean-scheduler:
-	make -C spatial-scheduler/build clean
+	make -C dsa-scheduler/build clean
 
 .PHONY: riscv-gnu-patch
 riscv-gnu-patch:
