@@ -1,15 +1,18 @@
 [submodule "dsa-apps"]
 	path = dsa-apps
 	url = https://github.com/polyarch/dsa-apps
-[submodule "dsa-xform"]
-	path = dsa-xform
-	url = https://github.com/polyarch/dsa-xform
 [submodule "dsa-docs"]
-	path = docs
-	url = https://github.com/polyarch/dsa-docs
-[submodule "docs"]
 	path = docs
 	url = https://github.com/polyarch/dsa-docs
 [submodule "dsa-scheduler"]
 	path = dsa-scheduler
 	url = https://github.com/polyarch/dsa-scheduler
+[submodule "dsa-gem5"]
+	path = dsa-gem5
+	url = https://github.com/polyarch/dsa-gem5
+[submodule "dsa-llvm-project"]
+	path = dsa-llvm-project
+	url = https://github.com/polyarch/dsa-llvm-project
+[submodule "dsa-riscv-ext"]
+	path = dsa-riscv-ext
+	url = https://github.com/polyarch/dsa-riscv-ext
