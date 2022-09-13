@@ -3,7 +3,7 @@ default: all
 include msg.mk
 
 .PHONY: all
-all: ss-scheduler chipyard llvm-project gem5
+all: dsa-scheduler chipyard llvm-project dsa-gem5
 
 .PHONY: clean
 clean: clean-gem5 clean-llvm clean-chipyard clean-scheduler
@@ -15,12 +15,12 @@ dsa-ext:
 	make -C dsa-riscv-ext COMPAT=1
 
 # Spatial Scheduler
-.PHONY: ss-scheduler
-ss-scheduler: dsa-ext
+.PHONY: dsa-scheduler
+dsa-scheduler: dsa-ext
 	make -C $@ all
 
 clean-scheduler:
-	rm -rf ss-scheduler/build
+	rm -rf dsa-scheduler/build
 
 # ChipYard and RISC-V GNU Toolchain
 .PHONY: chipyard
@@ -36,8 +36,8 @@ clean-chipyard:
 	rm -rf chipyard/riscv-tools-install chipyard/env.sh chipyard/env-riscv-tools.sh
 
 # LLVM compiler
-.PHONY: llvm-project
-llvm-project: chipyard ss-scheduler
+.PHONY: dsa-llvm-project
+dsa-llvm-project: chipyard dsa-scheduler
 	cd $@ && mkdir -p build && cd build &&                          \
 	cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release"          \
         -DBUILD_SHARED_LIBS=ON -DLLVM_USE_SPLIT_DWARF=ON                \
@@ -49,12 +49,12 @@ llvm-project: chipyard ss-scheduler
 	make -C $@/build install -j$$((`nproc`))
 
 clean-llvm:
-	rm -rf llvm-project/build
+	rm -rf dsa-llvm-project/build
 
 # Gem5 simulator
-.PHONY: gem5
-gem5: chipyard ss-scheduler
+.PHONY: dsa-gem5
+dsa-gem5: chipyard dsa-scheduler
 	source chipyard/env.sh && cd $@ && scons build/RISCV/gem5.opt build/RISCV/gem5.debug -j`nproc`
 
 clean-gem5:
-	rm -rf gem5/build
+	rm -rf dsa-gem5/build
