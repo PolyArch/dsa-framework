@@ -8,7 +8,7 @@ PWD=$(pwd)
 
 # Initialize non-chipyard repo
 cd $SS
-git submodule update --init --recursive dsa-riscv-ext gem5 llvm-project ss-scheduler ss-workloads
+git submodule update --init --recursive dsa-riscv-ext dsa-gem5 dsa-llvm-project dsa-scheduler dsa-apps
 
 # Initialize ChipYard repo
 git submodule update --init chipyard
