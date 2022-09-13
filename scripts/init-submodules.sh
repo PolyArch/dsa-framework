@@ -1,4 +1,4 @@
-if [[ -z "${SS}" ]]; then
+if [ -z "${SS}" ]; then
   echo "Please source setup.sh under ss-stack before initialize submodule"
   exit 1
 fi
@@ -15,6 +15,7 @@ git submodule update --init chipyard
 
 # Initialize ChipYard submodule
 cd chipyard
+git config url."https://".insteadOf git://
 ./scripts/init-submodules-no-riscv-tools.sh --skip-validate
 
 # Initialize ChipYard FPGA repo
