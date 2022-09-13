@@ -2,9 +2,10 @@ name: ss-stack
 channels:
   - defaults
 dependencies:
-  - six=1.16.0
-  - yaml=0.2.5
+  - cmake
+  - python=3.8
   - pip:
     - pyyaml==6.0
     - scons==3.0.1
     - typing-extensions==4.2.0
+    - six
