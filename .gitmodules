@@ -13,3 +13,6 @@
 [submodule "dsa-scheduler"]
 	path = dsa-scheduler
 	url = https://github.com/polyarch/dsa-scheduler
+[submodule "chipyard"]
+	path = chipyard
+	url = https://github.com/PolyArch/chipyard.git
