@@ -40,7 +40,8 @@ else
       conda env list | grep "${@}" >/dev/null 2>/dev/null
   }
   if ! find_in_conda_env ".*ss-stack.*" ; then
-  	conda env create -f $SS/ss-stack-conda-env.yml 
+  	echo "ss-stack environment not found"
+	conda env create -f $SS/ss-stack-conda-env.yml 
   fi
   conda activate ss-stack
 
