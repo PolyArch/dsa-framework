@@ -3,7 +3,7 @@ default: all
 include msg.mk
 
 .PHONY: all
-all: dsa-scheduler chipyard llvm-project dsa-gem5
+all: dsa-scheduler chipyard dsa-llvm-project dsa-gem5
 
 .PHONY: clean
 clean: clean-gem5 clean-llvm clean-chipyard clean-scheduler
