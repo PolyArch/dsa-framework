@@ -3,53 +3,58 @@ default: all
 include msg.mk
 
 .PHONY: all
-all: dsa-gem5 dsa-scheduler riscv-gnu-toolchain dsa-llvm-project
+all: ss-scheduler chipyard llvm-project gem5
 
 .PHONY: clean
-clean: clean-gem5 clean-scheduler clean-gnu clean-llvm
+clean: clean-gem5 clean-llvm clean-chipyard clean-scheduler
 	rm -rf ss-tools
 
-.PHONY: dsa-gem5
-dsa-gem5: dsa-scheduler
-	cd $@ && scons build/RISCV/gem5.opt build/RISCV/gem5.debug -j`nproc`
+# DSA RISC-V Extension
+.PHONY: dsa-ext
+dsa-ext:
+	make -C dsa-riscv-ext COMPAT=1
 
-clean-gem5:
-	cd dsa-gem5 && scons -c build/RISCV/gem5.opt build/RISCV/gem5.debug -j`nproc`
-
-.PHONY: dsa-scheduler
-dsa-scheduler:
-	cd $@ && make all -j
+# Spatial Scheduler
+.PHONY: ss-scheduler
+ss-scheduler: dsa-ext
+	make -C $@ all
 
 clean-scheduler:
-	make -C dsa-scheduler/build clean
+	rm -rf ss-scheduler/build
 
-.PHONY: riscv-gnu-patch
-riscv-gnu-patch:
-	make -C dsa-riscv-ext
+# ChipYard and RISC-V GNU Toolchain
+.PHONY: chipyard
+chipyard: dsa-ext
+ifneq ($(wildcard $(SS)/chipyard/env-riscv-tools.sh),)
+	echo "ChipYard RISC-V ENV Script Found, skip rebuild chipyard toolchain"
+else
+	echo "ChipYard RISC-V ENV Script Not Found, Building Toolchain ... "
+	cd ./chipyard && ./scripts/build-toolchains.sh --ignore-qemu riscv-tools
+endif
 
-.PHONY: riscv-gnu-toolchain
-riscv-gnu-toolchain: riscv-gnu-patch
-	cd $@ && ./configure --prefix=$(SS_TOOLS)/ --enable-multilib &&  \
-	make -j &&                                                       \
-	LD_LIBRARY_PATH="" make linux -j
+clean-chipyard:
+	rm -rf chipyard/riscv-tools-install chipyard/env.sh chipyard/env-riscv-tools.sh
 
-clean-gnu:
-	make -C riscv-gnu-toolchain clean
-
+# LLVM compiler
 .PHONY: llvm-project
-dsa-llvm-project: riscv-gnu-toolchain
+llvm-project: chipyard ss-scheduler
 	cd $@ && mkdir -p build && cd build &&                          \
 	cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE="Release"          \
         -DBUILD_SHARED_LIBS=ON -DLLVM_USE_SPLIT_DWARF=ON                \
         -DCMAKE_INSTALL_PREFIX=$(SS_TOOLS) -DLLVM_OPTIMIZED_TABLEGEN=ON \
-        -DLLVM_BUILD_TESTS=False -DLLVM_TARGETS_TO_BUILD=""             \
-        -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD="RISCV"                    \
-        -DLLVM_TARGETS_TO_BUILD="RISCV"                                 \
-        -DDEFAULT_SYSROOT=$(SS_TOOLS)/riscv64-unknown-elf               \
-        -DLLVM_DEFAULT_TARGET_TRIPLE="riscv64-unknown-elf"              \
+        -DLLVM_BUILD_TESTS=False -DLLVM_TARGETS_TO_BUILD="RISCV"        \
+        -DLLVM_DEFAULT_TARGET_TRIPLE="riscv64-unknown-linux-gnu"        \
         -DCMAKE_CROSSCOMPILING=True -DLLVM_ENABLE_RTTI=ON               \
         -DLLVM_ENABLE_PROJECTS="clang" ../llvm
-	make -C $@/build install -j$$((`nproc`/2))
+	make -C $@/build install -j$$((`nproc`))
 
 clean-llvm:
-	make -C dsa-llvm-project/build clean
+	rm -rf llvm-project/build
+
+# Gem5 simulator
+.PHONY: gem5
+gem5: chipyard ss-scheduler
+	source chipyard/env.sh && cd $@ && scons build/RISCV/gem5.opt build/RISCV/gem5.debug -j`nproc`
+
+clean-gem5:
+	rm -rf gem5/build
