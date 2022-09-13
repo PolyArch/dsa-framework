@@ -30,11 +30,11 @@ else
   echo add "$"RISCV/bin to "$"PATH
   export PATH=$RISCV/bin:$PATH
   echo add gem5 to "$"PATH
-  export PATH=$SS/gem5/build/RISCV:$PATH
+  export PATH=$SS/dsa-gem5/build/RISCV:$PATH
 
   echo add "$"SS_TOOLS/lib to "$"LD_LIBRARY_PATH
   export PATH=$SS/scripts:$PATH
-  export LD_LIBRARY_PATH=$SS_TOOLS/lib64:$SS_TOOLS/lib:$SS/ss-scheduler/3rd-party/libtorch/lib/${LD_LIBRARY_PATH:+":${LD_LIBRARY_PATH}"}
+  export LD_LIBRARY_PATH=$SS_TOOLS/lib64:$SS_TOOLS/lib:$SS/dsa-scheduler/3rd-party/libtorch/lib/${LD_LIBRARY_PATH:+":${LD_LIBRARY_PATH}"}
 
   find_in_conda_env(){
       conda env list | grep "${@}" >/dev/null 2>/dev/null
