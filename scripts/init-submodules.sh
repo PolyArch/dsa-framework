@@ -13,7 +13,7 @@ git submodule update --init chipyard
 
 # Initialize ChipYard submodule
 cd chipyard
-git config url."https://".insteadOf git://
+git config --global url."https://".insteadOf git://
 ./scripts/init-submodules-no-riscv-tools.sh --skip-validate
 
 # Initialize ChipYard FPGA repo
