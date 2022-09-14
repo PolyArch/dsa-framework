@@ -6,13 +6,14 @@ LABEL maintainer="jian.weng@ucla.edu"
 ENV DEBIAN_FRONTEND=noninteractive 
 
 # Update apps on the base image
-# Packages
 RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux-*
 RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux-*
 RUN yum makecache --refresh
 RUN yum update -y
-RUN yum groupinstall -y "Development Tools"
 RUN dnf config-manager --set-enabled powertools
+
+# Install packages
+RUN yum groupinstall -y "Development Tools"
 RUN dnf install -y gperf texinfo expat-devel util-linux-user dtc
 RUN yum install -y autoconf automake curl bison flex libtool gmp-devel ncurses-devel \
 		   patchutils bc flex bison java-11-openjdk-devel libpng-devel perl \
@@ -32,3 +33,9 @@ RUN cd /root && wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x
     chmod u+x ./Anaconda3-2022.05-Linux-x86_64.sh && \
     ./Anaconda3-2022.05-Linux-x86_64.sh -b -p /root/anaconda3
 
+# Initialize Anaconda3 under zsh
+RUN echo "source /root/anaconda3/bin/activate" >> /root/.zshrc
+
+# Download the repos
+RUN cd /root && git clone https://github.com/polyarch/dsa-framework
+RUN cd /root/dsa-framework && ./scripts/init-submodules.sh

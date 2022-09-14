@@ -1,13 +1,11 @@
-if [ -z "${SS}" ]; then
-  echo "Please source setup.sh under ss-stack before initialize submodule"
-  exit 1
-fi
+#!/usr/bin/env bash
 
 # Get the current path
 PWD=$(pwd)
+REPO_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-${(%):-%x}}")")"/../
+cd $REPO_DIR
 
 # Initialize non-chipyard repo
-cd $SS
 git submodule update --init --recursive dsa-riscv-ext dsa-gem5 dsa-llvm-project dsa-scheduler dsa-apps
 
 # Initialize ChipYard repo
