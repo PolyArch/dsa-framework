@@ -1,6 +1,5 @@
 # Get the base Ubuntu image from Docker Hub
 FROM centos:8
-# FROM continuumio/anaconda3:latest
 
 LABEL maintainer="jian.weng@ucla.edu"
 ENV DEBIAN_FRONTEND=noninteractive 
