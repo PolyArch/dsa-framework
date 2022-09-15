@@ -3,7 +3,10 @@ version: 2
 python:
   version: "3.7"
   install:
-    - docs/requirements.txt
+    - method: pip
+      path: .
+      extra_requirements:
+        - breathe
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
