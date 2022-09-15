@@ -10,9 +10,11 @@ sphinx:
   configuration: docs/conf.py
 
 submodules:
-  recursive: true
+  recursive: false
   include:
      - docs
+     - chipyard
+     - chipyard/generators/dsagen2
      - dsa-scheduler
 
 
