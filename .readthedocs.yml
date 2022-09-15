@@ -9,5 +9,6 @@ submodules:
   exclude:
      - dsa-llvm-project
      - riscv-gnu-toolchain
+     - chipyard
      - dsa-gem5
 
