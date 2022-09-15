@@ -12,8 +12,6 @@ sphinx:
 submodules:
   recursive: false
   include:
-     - dsagen2
-  exclude:
-     - dsa-llvm-project
-     - riscv-gnu-toolchain
-     - dsa-gem5
+     - dsa-docs
+     - chipyard
+     - dsa-scheduler
