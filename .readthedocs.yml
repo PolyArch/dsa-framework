@@ -1,5 +1,10 @@
 version: 2
 
+python:
+  version: "3.7"
+  install:
+    - breathe
+
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
   configuration: docs/conf.py
