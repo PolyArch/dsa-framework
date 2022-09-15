@@ -12,6 +12,7 @@ sphinx:
 submodules:
   recursive: true
   include:
-     - dsa-docs
+     - docs
      - dsa-scheduler
+
 
