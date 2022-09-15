@@ -10,10 +10,10 @@ sphinx:
   configuration: docs/conf.py
 
 submodules:
-  recursive: true
-  exclude:
-     - dsa-llvm-project
-     - riscv-gnu-toolchain
+  recursive: false
+  include:
+     - dsa-docs
+     - dsa-scheduler
      - chipyard
-     - dsa-gem5
+     - chipyard/generators/dsagen2
 
