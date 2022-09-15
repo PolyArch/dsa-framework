@@ -14,7 +14,6 @@ submodules:
   include:
      - docs
      - chipyard
-     - chipyard/generators/dsagen2
      - dsa-scheduler
 
 
