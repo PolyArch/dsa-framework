@@ -9,10 +9,10 @@ RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux-*
 RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux-*
 RUN yum makecache --refresh
 RUN yum update -y
-RUN dnf config-manager --set-enabled powertools
 
 # Install packages
 RUN yum groupinstall -y "Development Tools"
+RUN dnf config-manager --set-enabled powertools
 RUN dnf install -y gperf texinfo expat-devel util-linux-user dtc
 RUN yum install -y autoconf automake curl bison flex libtool gmp-devel ncurses-devel \
 		   patchutils bc flex bison java-11-openjdk-devel libpng-devel perl \
