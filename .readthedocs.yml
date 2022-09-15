@@ -3,7 +3,7 @@ version: 2
 python:
   version: "3.7"
   install:
-    - breathe
+    - requirements.txt
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
