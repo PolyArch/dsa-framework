@@ -10,8 +10,8 @@ sphinx:
   configuration: docs/conf.py
 
 submodules:
-  recursive: false
+  recursive: true
   include:
      - dsa-docs
-     - chipyard
      - dsa-scheduler
+
