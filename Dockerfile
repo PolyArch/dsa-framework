@@ -38,3 +38,6 @@ RUN echo "source /root/anaconda3/bin/activate" >> /root/.zshrc
 # Download the repos
 RUN cd /root && git clone https://github.com/polyarch/dsa-framework
 RUN cd /root/dsa-framework && ./scripts/init-submodules.sh
+
+# Remove Anaconda install file
+RUN rm /root/Anaconda3-2022.05-Linux-x86_64.sh
