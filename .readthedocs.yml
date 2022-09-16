@@ -2,7 +2,7 @@ version: 2
 
 build:
   jobs:
-    post_create_environment:
+    post_install:
       - "cd chipyard && git submodule update --init --force generators/dsagen2 && cd .."
 
 python:
