@@ -8,9 +8,6 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.10"
-  jobs:
-    pre_create_environment:
-      - cd chipyard && git submodule update --init --force generators/dsagen2 && cd ..
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
@@ -20,7 +17,6 @@ submodules:
   recursive: false
   include:
      - docs
-     - chipyard
      - dsa-scheduler
 
 
