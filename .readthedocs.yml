@@ -3,7 +3,9 @@ version: 2
 build:
   jobs:
     post_install:
-      - cd chipyard && git submodule update --init --force generators/dsagen2 && cd ..
+      - cd chipyard 
+      - git submodule update --init --force generators/dsagen2
+      - cd ..
 
 python:
   version: "3.7"
