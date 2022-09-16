@@ -1,12 +1,15 @@
 version: 2
 
 build:
-  os: ubuntu-20.04
+  os: ubuntu-22.04
   tools:
     python: "3.10"
   jobs:
-    pre_install:
-      - echo "Command run at 'pre_install' step"
+    pre_create_environment:
+      - echo "Command run at 'pre_create_environment' step"
+    post_build:
+      - echo "Command run at 'post_build' step"
+      - echo `date`
 
 python:
   version: "3.10"
