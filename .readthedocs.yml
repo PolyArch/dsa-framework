@@ -10,10 +10,7 @@ build:
     python: "3.10"
   jobs:
     pre_create_environment:
-      - echo "Command run at 'pre_create_environment' step"
-    post_build:
-      - echo "Command run at 'post_build' step"
-      - echo `date`
+      - cd chipyard && git submodule update --init --force generators/dsagen2 && cd ..
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
