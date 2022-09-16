@@ -1,5 +1,10 @@
 version: 2
 
+python:
+  version: "3.10"
+  install:
+    - requirements: docs/requirements.txt
+
 build:
   os: ubuntu-22.04
   tools:
@@ -10,11 +15,6 @@ build:
     post_build:
       - echo "Command run at 'post_build' step"
       - echo `date`
-
-python:
-  version: "3.10"
-  install:
-    - requirements: docs/requirements.txt
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
