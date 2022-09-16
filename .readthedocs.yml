@@ -2,10 +2,8 @@ version: 2
 
 build:
   jobs:
-    post_install:
-      - cd chipyard 
-      - git submodule update --init --force generators/dsagen2
-      - cd ..
+    pre_install:
+      - echo "Command run at 'pre_install' step"
 
 python:
   version: "3.7"
