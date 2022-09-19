@@ -8,6 +8,6 @@ dependencies:
     - pyyaml==6.0
     - scons==3.0.1
     - typing-extensions==4.2.0
+    - six
     - pyvis
     - pandas
-    - six
