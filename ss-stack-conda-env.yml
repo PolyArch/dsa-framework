@@ -9,3 +9,5 @@ dependencies:
     - scons==3.0.1
     - typing-extensions==4.2.0
     - six
+    - pyvis
+    - pandas
