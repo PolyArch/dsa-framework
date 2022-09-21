@@ -30,7 +30,7 @@ ifneq ($(wildcard $(SS)/chipyard/env-riscv-tools.sh),)
 else
 	echo "ChipYard RISC-V ENV Script Not Found, Building Toolchain ... "
 	cd ./chipyard && ./scripts/build-toolchains.sh --ignore-qemu riscv-tools
-	source $(SS)/chipyard/env.sh
+	echo "Please source chipyard/env.sh"
 endif
 
 clean-chipyard:
