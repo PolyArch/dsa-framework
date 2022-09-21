@@ -4,6 +4,7 @@ include msg.mk
 
 .PHONY: all
 all: dsa-scheduler chipyard dsa-llvm-project dsa-gem5
+	echo "Please source chipyard/env.sh if this is a first-time build"
 
 .PHONY: clean
 clean: clean-gem5 clean-llvm clean-chipyard clean-scheduler
@@ -30,7 +31,7 @@ ifneq ($(wildcard $(SS)/chipyard/env-riscv-tools.sh),)
 else
 	echo "ChipYard RISC-V ENV Script Not Found, Building Toolchain ... "
 	cd ./chipyard && ./scripts/build-toolchains.sh --ignore-qemu riscv-tools
-	source $(SS)/chipyard/env.sh
+	echo "Please source chipyard/env.sh"
 endif
 
 clean-chipyard:
