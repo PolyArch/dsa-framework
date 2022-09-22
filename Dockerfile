@@ -23,7 +23,7 @@ RUN cd /root
 RUN git clone http://git.veripool.org/git/verilator
 RUN cd verilator
 RUN git checkout v4.034
-RUN autoconf && ./configure && make -j$(nproc) && sudo make install
+RUN autoconf && ./configure && make -j$(nproc) && make install
 RUN cd ..
 RUN rm -rf verilator
 
