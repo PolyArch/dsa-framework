@@ -18,6 +18,15 @@ RUN yum install -y autoconf automake curl bison flex libtool gmp-devel ncurses-d
 		   patchutils bc flex bison java-11-openjdk-devel libpng-devel perl \
 		   libmpc-devel mpfr zlib-devel zip unzip zsh tmux wget git vim emacs gettext
 
+# Install verilator
+RUN cd /root
+RUN git clone http://git.veripool.org/git/verilator
+RUN cd verilator
+RUN git checkout v4.034
+RUN autoconf && ./configure && make -j$(nproc) && sudo make install
+RUN cd ..
+RUN rm -rf verilator
+
 # SBT for Scala
 RUN rm -f /etc/yum.repos.d/bintray-rpm.repo &&                       \
     curl -L https://www.scala-sbt.org/sbt-rpm.repo > sbt-rpm.repo && \
