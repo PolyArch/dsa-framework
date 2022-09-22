@@ -14,7 +14,7 @@ RUN yum update -y
 RUN yum groupinstall -y "Development Tools"
 RUN dnf config-manager --set-enabled powertools
 RUN dnf install -y gperf texinfo expat-devel util-linux-user dtc
-RUN yum install -y autoconf automake curl bison flex libtool gmp-devel ncurses-devel \
+RUN yum install -y autoconf fd-find automake curl bison flex libtool gmp-devel ncurses-devel \
 		   patchutils bc flex bison java-11-openjdk-devel libpng-devel perl \
 		   libmpc-devel mpfr zlib-devel zip unzip zsh tmux wget git vim emacs gettext
 
