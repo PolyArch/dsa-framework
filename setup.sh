@@ -1,6 +1,6 @@
 #!/bin/bash
-
 DIR="$( cd "$( dirname "$0" )" >/dev/null 2>&1 && pwd )"
+export MAKEFLAGS="-j$(($(nproc) - 2))"
 
 # Make sure conda is installed
 if ! command -v conda &> /dev/null
