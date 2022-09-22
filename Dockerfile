@@ -20,9 +20,9 @@ RUN yum install -y autoconf automake curl bison flex libtool gmp-devel ncurses-d
 RUN yum install -y https://rpmfind.net/linux/opensuse/distribution/leap/15.3/repo/oss/x86_64/fd-8.1.1-bp153.1.14.x86_64.rpm
 
 # Install verilator
-RUN cd /root && git clone http://git.veripool.org/git/verilator && \
-	cd verilator && git checkout v4.034 && autoconf && ./configure && make -j$(nproc) && make install
-RUN rm -rf /root/verilator
+RUN cd /root && git clone http://git.veripool.org/git/verilator && cd verilator && \
+    git checkout v4.034 && autoconf && ./configure && make -j$(nproc) && make install && \
+    rm -rf /root/verilator
 
 # SBT for Scala
 RUN rm -f /etc/yum.repos.d/bintray-rpm.repo &&                       \
