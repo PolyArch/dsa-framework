@@ -12,6 +12,14 @@ make ultraclean
 make ss-mv.riscv
 make ss-crs.riscv
 
+## DFG Visualization
+ss_sched spmv_0_1_1.dfg -f
+neato -Tpng -overlap=false -Gepsilon=.0001 -o spmv_0_1_1.png spmv_0_1_1.gv
+
+## Scheduled DFG-ADG Visualization
+ss_sched spmv_0_1_1.dfg ../adg/Mesh7x5-Simple64-Full7I5O.json -f
+dot -Tpng -o spmv_0_1_1.png spmv_0_1_1.gv
+
 ###########################################
 # Hardware Stack and RTL Simulation
 ###########################################
@@ -20,9 +28,8 @@ cd $SS/chipyard
 ## Compile Verilator RTL Simulation File
 make -C sims/verilator CONFIG=MeshDSARocketConfig
 
-## Visualization
+## ADG Visualization
 python3 $SS/scripts/adg_visualization.py generators/dsagen2/adg/Mesh7x5-Simple64-Full7I5O.json
-cp $SS/chipyard/generators/dsagen2/adg/Mesh7x5-Simple64-Full7I5O.html /root/dsa-share
 
 ## Compile all unit tests
 cd $SS/chipyard/generators/dsagen2
@@ -39,21 +46,9 @@ make -C sims/verilator CONFIG=MeshDSARocketConfig BINARY=$SS/dsa-apps/demo/ss-cr
 ###########################################
 # Visualization and Design Space Exploration
 ###########################################
-
-## DFG Visualization
-ss_sched dfg_name -f
-dot -Tpng -o dfg_name.png dfg_name.gv
-neato -Tpng -overlap=false -Gepsilon=.0001 -o dfg_name.png dfg_name.gv
-
-## ADG Visualization
-python3 $SS/scripts/adg_visualization.py adg_name.json
-
-## Scheduled DFG-ADG Visualization
-ss_sched dfg_name adg_name -f
-dot -Tpng -o dfg_name.png dfg_name.gv
+cd $SS/dsa-apps/demo
 
 ## DSE Commands
-cd $SS/dsa-apps/demo
 python3 extract.py
 ss_sched dfgs.list ../adg/Mesh7x5-Simple64-Full7I5O.json -x -f -m 200 --dse-timeout=500
 
