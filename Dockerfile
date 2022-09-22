@@ -1,7 +1,7 @@
 # Get the base Ubuntu image from Docker Hub
 FROM centos:8
 
-LABEL maintainer="jian.weng@ucla.edu"
+LABEL maintainer="jian.weng@ucla.edu;sihao@cs.ucla.edu"
 ENV DEBIAN_FRONTEND=noninteractive 
 
 # Update apps on the base image

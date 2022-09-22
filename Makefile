@@ -22,6 +22,7 @@ dsa-scheduler: dsa-ext
 
 clean-scheduler:
 	rm -rf dsa-scheduler/build
+	rm -rf dsa-scheduler/libtorch dsa-scheduler/libtorch.zip
 
 # ChipYard and RISC-V GNU Toolchain
 .PHONY: chipyard
@@ -50,7 +51,7 @@ dsa-llvm-project: chipyard dsa-scheduler
         -DLLVM_ENABLE_PROJECTS="clang" ../llvm
 	make -C $@/build install -j$$((`nproc`))
 
-clean-llvm:
+clean-llvm: clean-scheduler
 	rm -rf dsa-llvm-project/build
 
 # Gem5 simulator
@@ -58,5 +59,5 @@ clean-llvm:
 dsa-gem5: chipyard dsa-scheduler
 	source chipyard/env.sh && cd $@ && scons build/RISCV/gem5.opt build/RISCV/gem5.debug -j`nproc`
 
-clean-gem5:
+clean-gem5: clean-scheduler
 	rm -rf dsa-gem5/build
