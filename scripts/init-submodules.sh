@@ -6,7 +6,7 @@ REPO_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-${(%):-%x}}")")"/../
 cd $REPO_DIR
 
 # Initialize non-chipyard repo
-git submodule update --init --recursive dsa-riscv-ext dsa-gem5 dsa-llvm-project dsa-scheduler dsa-apps
+git submodule update --init --recursive docs dsa-riscv-ext dsa-gem5 dsa-llvm-project dsa-scheduler dsa-apps
 
 # Initialize ChipYard repo
 git submodule update --init chipyard
