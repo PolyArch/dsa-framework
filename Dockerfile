@@ -17,7 +17,7 @@ RUN dnf install -y gperf texinfo expat-devel util-linux-user dtc
 RUN yum install -y autoconf automake curl bison flex libtool gmp-devel ncurses-devel \
 		   patchutils bc flex bison java-11-openjdk-devel libpng-devel perl \
 		   libmpc-devel mpfr zlib-devel zip unzip zsh tmux wget git vim emacs gettext
-RUN yum install https://rpmfind.net/linux/opensuse/distribution/leap/15.3/repo/oss/x86_64/fd-8.1.1-bp153.1.14.x86_64.rpm
+RUN yum install -y https://rpmfind.net/linux/opensuse/distribution/leap/15.3/repo/oss/x86_64/fd-8.1.1-bp153.1.14.x86_64.rpm
 
 # Install verilator
 RUN cd /root
