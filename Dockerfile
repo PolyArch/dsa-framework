@@ -1,5 +1,5 @@
 # Get the base centos8 image from Docker Hub
-FROM centos:8
+FROM --platform=linux/amd64 centos:8
 
 LABEL maintainer="Sihao Liu <sihao@cs.ucla.edu>; Jian Weng<jian.weng@ucla.edu>"
 ENV DEBIAN_FRONTEND=noninteractive 
