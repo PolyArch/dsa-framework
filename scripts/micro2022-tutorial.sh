@@ -14,7 +14,7 @@ make ss-crs.riscv
 
 ## DFG Visualization
 ss_sched spmv_0_1_1.dfg -f
-neato -Tpng -overlap=false -Gepsilon=.0001 -o spmv_0_1_1.png spmv_0_1_1.gv
+neato -Tpng -Goverlap=false -Gepsilon=.0001 -o spmv_0_1_1.png spmv_0_1_1.gv
 
 ## Scheduled DFG-ADG Visualization
 ss_sched spmv_0_1_1.dfg ../adg/Mesh7x5-Simple64-Full7I5O.json -f
