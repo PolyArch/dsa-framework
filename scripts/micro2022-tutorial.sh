@@ -41,8 +41,8 @@ cd $SS/chipyard
 make -C sims/verilator CONFIG=MeshDSARocketConfig ss-run
 
 ## Run mv and crs
-make -C sims/verilator CONFIG=MeshDSARocketConfig BINARY=$SS/dsa-apps/demo/ss-mv.riscv
-make -C sims/verilator CONFIG=MeshDSARocketConfig BINARY=$SS/dsa-apps/demo/ss-crs.riscv
+make -C sims/verilator CONFIG=MeshDSARocketConfig BINARY=$SS/dsa-apps/demo/ss-mv.riscv run-binary-fast
+make -C sims/verilator CONFIG=MeshDSARocketConfig BINARY=$SS/dsa-apps/demo/ss-crs.riscv run-binary-fast
 
 ###########################################
 # Visualization and Design Space Exploration
