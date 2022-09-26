@@ -96,7 +96,7 @@ def generate_adg_graph(filename, graph_name, graph_folder, schedule):
         for operation in operations:
             title += '\t' + operation + '\n'
 
-        net.add_node(node, label='PE ' + number, title=title, size=size, shape='square', color='#808080')
+        net.add_node(node, label='PE ' + number, title=title, size=size, shape='square', color='#CCDBDC')
 
     # Add Switches
     for node in switches:
@@ -104,40 +104,40 @@ def generate_adg_graph(filename, graph_name, graph_folder, schedule):
         datawidth = switches[node]['dsagen2.comp.config.CompKeys$CompNode$']['compBits']
         size = (int(datawidth) / 64) * 25
         
-        net.add_node(node, label='SW ' + number, shape='circle', size=size, color='#808080')
+        net.add_node(node, label='SW ' + number, shape='circle', size=size, color='#CCDBDC')
     
 
     # Add Input Vector Ports
     for node in ivp_nodes:
         name, number = node.split('.')
-        net.add_node(node, label='IVP ' + number, shape='circle', color='#808080')
+        net.add_node(node, label='IVP ' + number, shape='circle', color='#CCDBDC')
     
     # Add Output Vector Ports
     for node in ovp_nodes:
         name, number = node.split('.')
-        net.add_node(node, label='OVP ' + number, shape='circle', color='#808080')
+        net.add_node(node, label='OVP ' + number, shape='circle', color='#CCDBDC')
 
     # Add Direct Memory Access
     for node in dma_nodes:
         name, number = node.split('.')
-        net.add_node(node, label='DMA ' + number, shape='circle', color='#808080')
+        net.add_node(node, label='DMA ' + number, shape='circle', color='#CCDBDC')
     
     # Add Scratchpad
     for node in scratchpad_nodes:
         name, number = node.split('.')
-        net.add_node(node, label='SPM ' + number, shape='circle', color='#808080')
+        net.add_node(node, label='SPM ' + number, shape='circle', color='#CCDBDC')
     
     for node in rec_nodes:
         name, number = node.split('.')
-        net.add_node(node, label='REC ' + number, shape='circle', color='#808080')
+        net.add_node(node, label='REC ' + number, shape='circle', color='#CCDBDC')
     
     for node in gen_nodes:
         name, number = node.split('.')
-        net.add_node(node, label='GEN ' + number, shape='circle', color='#808080')
+        net.add_node(node, label='GEN ' + number, shape='circle', color='#CCDBDC')
     
     for node in reg_nodes:
         name, number = node.split('.')
-        net.add_node(node, label='REG ' + number, shape='circle', color='#808080')
+        net.add_node(node, label='REG ' + number, shape='circle', color='#CCDBDC')
 
 
     # Add Links
@@ -155,7 +155,7 @@ def generate_adg_graph(filename, graph_name, graph_folder, schedule):
 
         sourceId = str(link['SourceNodeType']) + '.' + str(link['SourceNodeId'])
         sinkId = str(link['SinkNodeType']) + '.' + str(link['SinkNodeId'])
-        net.add_edge(sourceId, sinkId, arrows='to', smooth=lineStyle, color={'color': '#808080', 'opacity': .1}, dashes=True, physics=physics, weight=1)
+        net.add_edge(sourceId, sinkId, arrows='to', smooth=lineStyle, color={'color': '#CCDBDC', 'opacity': .1}, dashes=True, physics=physics, weight=1)
     
     # Add hidden links between similar data and vector port types
     for node in ivp_nodes:
@@ -237,7 +237,7 @@ def generate_adg_graph(filename, graph_name, graph_folder, schedule):
 
             node['vertices'] = vertexNames[:-1]
 
-    default_colors = ['#FF0000', '#0000FF', '#ff8c00', '#00FF00', '#A020F0', '#cd853f', '#00FFFF', '#FF00FF', '#808000', '#5f9ea0']
+    default_colors = ['#ff8c00', '#00FF00', '#cd853f', '#00FFFF', '#FF00FF', '#5f9ea0', '#FCF5C7', '#FFC09F', '#ADF7B6', '#D7FFF1', '#9BC1BC', '#DAF7DC', '#FAFF81', '#BDA0BC', '#C1F7DC']
     num_used = 0
     
     valueColors = {}
@@ -282,8 +282,9 @@ def generate_adg_graph(filename, graph_name, graph_folder, schedule):
     
     for node in net.nodes:
         name = node['id']
-        if name in nodeColors:
-            node['color'] = nodeColors[name][0]
+        if node['id'] in vertexNodes:
+            if name in nodeColors:
+                node['color'] = nodeColors[name][0]
     
     for link in net.edges:
         name = link['from'] + '->' + link['to']

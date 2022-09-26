@@ -121,10 +121,10 @@ def create_graph(filename, graph_folder):
     fig, (ax1, ax2) = plt.subplots(1, 2)
 
     p1axis = plot_lines(ax1, colors, times, performance)
-    set_axis(ax1, 'Time (s)', 'Performance')
+    set_axis(ax1, 'Time (S)', 'Estimated IPC')
 
     p2axis = plot_lines(ax2, colors, times, area)
-    set_axis(ax2, 'Time (s)', 'Single-Core-Area')
+    set_axis(ax2, 'Time (S)', 'Single-Core-Area')
 
     fig.set_size_inches(14, 8)
     fig.tight_layout()
@@ -134,16 +134,16 @@ def create_graph(filename, graph_folder):
     fig.tight_layout()
 
     p5axis = plot_lines(ax1, colors, times, total_lut)
-    set_axis(ax1, 'Time (s)', 'Total Lut')
+    set_axis(ax1, 'Time (S)', 'Total Lut')
 
     p6axis =  plot_lines(ax2, colors, times, logic_lut)
-    set_axis(ax2, 'Time (s)', 'Logic LUT')
+    set_axis(ax2, 'Time (S)', 'Logic LUT')
 
     p7axis =  plot_lines(ax3, colors, times, ram_lut)
-    set_axis(ax3, 'Time (s)', 'Ram LUT')
+    set_axis(ax3, 'Time (S)', 'Ram LUT')
 
     p8axis =  plot_lines(ax4, colors, times, ff)
-    set_axis(ax4, 'Time (s)', 'Flip Flop')
+    set_axis(ax4, 'Time (S)', 'Flip Flop')
 
     fig.set_size_inches(14, 8)
     plt.savefig(graph_folder + '/dse-resources.png', dpi=300)
